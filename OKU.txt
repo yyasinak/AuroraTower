@@ -1,0 +1,51 @@
+AURORA TOWER
+============
+Oyunu acmak icin OYNA.bat veya index.html dosyasina cift tikla.
+Internet, kurulum veya ek program gerekmez. Guncel Edge, Chrome veya Firefox yeterlidir.
+Tam ekran icin tarayicida F11'e bas.
+
+KONTROLLER
+A / D veya sol / sag ok: kos
+Space / W / yukari ok: zipla (basili tutunca her iniste tekrar ziplar)
+Shift: havada bir kez ileri ve yukari atil; yere inince yenilenir
+P / Escape: duraklat / devam et
+Enter: baslat / tekrar oyna
+
+IPUCLARI
+Kosarak hiz kazanmak ziplama yuksekligini artirir.
+Duvarda ziplamaya basarak duvardan sekebilirsin.
+3,5 saniye icinde daha once inmedigin daha yuksek bir platforma inerek kombo yap.
+Ayni veya daha alcak platforma inmek komboyu hemen bitirir. En fazla 8x.
+Altin kristaller 25 puan verir.
+Sari platformlar yaylidir; mor platformlar hareket eder.
+Pembe platformlar uzerine bastiktan sonra kirilir.
+Alttan yukselen pembe firtinadan kac!
+Rekorun tarayicinda saklanir. Gizli modda kalici olmayabilir.
+
+Icy Tower'dan ilham alan, ozgun grafik ve kodla hazirlanmis bagimsiz oyun.
+
+YENILIKLER
+Giris ve tekrar oynama ekraninda Nova, Koz, Piksel veya Nane'yi sec.
+Karakterler ayni yeteneklere sahiptir; gorunusleri farklidir. Secimin kaydedilir.
+100. katta Safak Zirvesi, 200. katta Yildiz Denizi arka plani acilir.
+Her 25 katta 250 bonus puan, her 100 katta bunun yerine 1000 puan kazan.
+Her 5 kristalde 8 saniye Kristal Soleni: yakin kristalleri ceken miknatis
+ve kristallerden iki kat puan! Sure, duraklattiginda ilerlemez.
+200. kattan sonra arka planda aralikli meteor yagmurlari gorunur.
+Tur sonu ekraninda puan, kat, en iyi kombo, sure, kristal ve rekor farki yer alir.
+
+YUKSEK KATLAR
+300: Buzul Firtinasi - kar ve buz sirtlari.
+400: Kul Vadisi - yukselen kozler ve lav izleri.
+500: Zumrut Gokler - ucan adalar ve ates bocekleri.
+600 ve ustu: Kozmik Esik - halkali gezegen ve meteor yagmurlari.
+Her 100 katta platformlar daralir; hareketli ve kirilgan platformlar siklasir.
+Platform hareketleri ve firtina hizlanir, kirilma suresi kisalir.
+Her 10 kattaki genis sabit platformlar dinlenme noktalaridir.
+600'den sonra da her 100 katta zorluk artar; artislar giderek kuculur.
+
+YENI KARAKTERLER
+melduk: bordo kiyafet, uzun kahverengi sac, halka kupe ve kolye.
+Ziplarken arkasinda altin renkli bal polenleri birakir.
+white: koyu kiyafet, kisa koyu sac ve sakal.
+Ikisi de giris ve tur sonu karakter seciminde bulunur.
