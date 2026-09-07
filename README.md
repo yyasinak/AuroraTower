@@ -1,6 +1,6 @@
 # Aurora Tower
 
-Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Altı karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
+Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
 
 ## Hemen oyna
 
@@ -30,6 +30,7 @@ Hız kazanmak zıplama yüksekliğini artırır. Duvarın yanında yeniden zıpl
 - Her 25 katta bonus; her 100 katta artan zorluk. Her 10 katta geniş, sabit bir platform bulunur.
 - Ortamlar: Gece Bahçesi → 100 Şafak Zirvesi → 200 Yıldız Denizi → 300 Buzul Fırtınası → 400 Kül Vadisi → 500 Zümrüt Gökler → 600 Kozmik Eşik.
 - Melduk havada bal poleni bırakır. Karakterlerin fiziksel yetenekleri aynıdır.
+- EbuCehil, siyah gömlek ve kabarık koyu saçla seçilebilir; havada çizgi film tarzı kaka parçaları bırakır.
 - Aktif 2× veya üzeri komboda duvardan sekmek daha güçlü bir sıçrayış verir. Duvardan sekerken karakter takla atar.
 - Melduk ve white için karakter seçiminde dörder kıyafet bulunur; tercihler kaydedilir.
 - Nadir roketleri toplayarak yaklaşık 10 kat yüksel. Roket sırasında sağa-sola yön verebilirsin; bitince havada atılma yeniden hazır olur.
