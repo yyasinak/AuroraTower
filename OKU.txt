@@ -49,3 +49,9 @@ melduk: bordo kiyafet, uzun kahverengi sac, halka kupe ve kolye.
 Ziplarken arkasinda altin renkli bal polenleri birakir.
 white: koyu kiyafet, kisa koyu sac ve sakal.
 Ikisi de giris ve tur sonu karakter seciminde bulunur.
+
+TAKLA, DOLAP VE ROKET
+2x ve uzeri aktif komboda duvardan sekmek daha yuksek ziplatir.
+Duvardan sekerken karakter kendi etrafinda takla atar.
+melduk ve white seciliyken kiyafet dolabindan dort tarzi deneyebilirsin.
+Nadir roketler yaklasik 10 kat yukseltir; A/D ile yon verebilirsin.
