@@ -8,7 +8,7 @@ Neon haritasındaki pembe ok işaretli pedlerden zıplamak ek yükseklik verir. 
 
 Neon 1986'da sabit durunca karakter disko dansı yapar. Bu görsel animasyon fırtınayı durdurmaz.
 
-**Kasetçalar:** Menüden kendi MP3/OGG/WAV dosyanı seç. Müzik yalnızca Neon 1986 turunda, varsayılan %18 sesle çalar; duraklatma ve tur sonunda durur. Müzik sesi efektlerden ayrı ayarlanır. Dosya yalnızca cihazında kullanılır ve sayfa yenilenince yeniden seçilir. Stayin' Alive kaydı depoya dahil değildir.
+**Kasetçalar:** Gönderilen Stayin' Alive kaydı `assets/audio/stayin-alive.mp3` yolunda depoya dahildir. Neon 1986 turunda varsayılan %18 sesle otomatik çalar. Ölümde 1,2 saniyede kısılır; özgün, sentezlenmiş bir arcade yenilgi sesi eşlik eder. Duraklatma müziği de durdurur. Müzik sesi efektlerden ayrı ayarlanır. Menüden başka bir MP3/OGG/WAV seçersen bu seçim yalnızca o oturumda kullanılır.
 
 Topladığın her kristal kalıcı cüzdana **1 kristal** ekler; ölümde kaybolmaz ve iki haritada ortak kullanılır. Çift puan bonusu cüzdan miktarını ikiye katlamaz. Önceki sürümlerde toplanan kristaller kaydedilmediği için geriye dönük eklenmez.
 
@@ -83,4 +83,4 @@ Arkadaşların deponun **Code** menüsündeki adresi kullanarak klonlayabilir ve
 - `OYNA.bat`: Windows başlatıcısı
 - `verify.cjs`: bağımlılıksız regresyon testleri
 
-Grafikler kodla çizilir, sesler tarayıcıda üretilir. Harici görsel, font veya ses indirilmez. Referans fotoğraf bu depoya dahil değildir. Icy Tower ile resmi bir bağlantısı yoktur.
+Grafikler ve oyun efektleri kodla üretilir. Arka plan müziği depodaki MP3 dosyasından oynatılır; oyun sırasında harici hizmetten indirme yapılmaz. Referans fotoğraf bu depoya dahil değildir. Icy Tower ile resmi bir bağlantısı yoktur.
