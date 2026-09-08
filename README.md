@@ -2,6 +2,10 @@
 
 Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
 
+**Yeni harita: Neon 1986.** Giriş veya tur sonu ekranında Aurora ve 80'ler temalı Neon 1986 arasında seçim yap. Neon şehir, çizgili gün batımı, palmiyeler ve hareketli perspektif ızgara; her 100 katta değişen renklerle tırmanışa eşlik eder. Rekorlar haritaya göre ayrı saklanır.
+
+Neon haritasındaki pembe ok işaretli pedlerden zıplamak ek yükseklik verir. Kasetler 150 puan kazandırır ve havada atılmayı yeniler. Melduk'un **Disco 86**, white'ın **Miami 86** kıyafetleri dolapta; bu kıyafetler her iki haritada da kullanılabilir.
+
 ## Hemen oyna
 
 1. Bu depoyu klonla veya **Code → Download ZIP** ile indir. ZIP indirdiysen önce dosyaları çıkar.
