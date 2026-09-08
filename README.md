@@ -8,6 +8,8 @@ Neon haritasındaki pembe ok işaretli pedlerden zıplamak ek yükseklik verir. 
 
 Neon 1986'da sabit durunca karakter disko dansı yapar. Bu görsel animasyon fırtınayı durdurmaz.
 
+**Kasetçalar:** Menüden kendi MP3/OGG/WAV dosyanı seç. Müzik yalnızca Neon 1986 turunda, varsayılan %18 sesle çalar; duraklatma ve tur sonunda durur. Müzik sesi efektlerden ayrı ayarlanır. Dosya yalnızca cihazında kullanılır ve sayfa yenilenince yeniden seçilir. Stayin' Alive kaydı depoya dahil değildir.
+
 Topladığın her kristal kalıcı cüzdana **1 kristal** ekler; ölümde kaybolmaz ve iki haritada ortak kullanılır. Çift puan bonusu cüzdan miktarını ikiye katlamaz. Önceki sürümlerde toplanan kristaller kaydedilmediği için geriye dönük eklenmez.
 
 Başlangıç marketinde **10 kristale 15 saniyelik mıknatıs**, **12 kristale 20 saniyelik yaylı ayakkabı**, **20 kristale 10 katlık roket kalkışı** alabilirsin. Her üründen sonraki tur için bir adet alınabilir; ürünler bir sonraki tur başlarken otomatik tüketilir. Harita değişimi ve sayfa yenileme satın alınmış ürünleri korur. Cüzdan aynı tarayıcı ve adresin yerel kaydında tutulur; farklı cihazlara otomatik taşınmaz.
