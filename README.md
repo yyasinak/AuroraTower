@@ -6,6 +6,12 @@ Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karak
 
 Neon haritasındaki pembe ok işaretli pedlerden zıplamak ek yükseklik verir. Kasetler 150 puan kazandırır ve havada atılmayı yeniler. Melduk'un **Disco 86**, white'ın **Miami 86** kıyafetleri dolapta; bu kıyafetler her iki haritada da kullanılabilir.
 
+Neon 1986'da sabit durunca karakter disko dansı yapar. Bu görsel animasyon fırtınayı durdurmaz.
+
+Topladığın her kristal kalıcı cüzdana **1 kristal** ekler; ölümde kaybolmaz ve iki haritada ortak kullanılır. Çift puan bonusu cüzdan miktarını ikiye katlamaz. Önceki sürümlerde toplanan kristaller kaydedilmediği için geriye dönük eklenmez.
+
+Başlangıç marketinde **10 kristale 15 saniyelik mıknatıs**, **12 kristale 20 saniyelik yaylı ayakkabı**, **20 kristale 10 katlık roket kalkışı** alabilirsin. Her üründen sonraki tur için bir adet alınabilir; ürünler bir sonraki tur başlarken otomatik tüketilir. Harita değişimi ve sayfa yenileme satın alınmış ürünleri korur. Cüzdan aynı tarayıcı ve adresin yerel kaydında tutulur; farklı cihazlara otomatik taşınmaz.
+
 ## Hemen oyna
 
 1. Bu depoyu klonla veya **Code → Download ZIP** ile indir. ZIP indirdiysen önce dosyaları çıkar.
