@@ -36,7 +36,7 @@ Hız kazanmak zıplama yüksekliğini artırır. Duvarın yanında yeniden zıpl
 
 ## Oyun
 
-- Daha önce inmediğin yüksek platformlara art arda inerek en fazla **8× kombo** yap. Aynı veya daha alt platforma inmek komboyu bitirir.
+- Daha önce inmediğin yüksek platformlara art arda inerek **sınırsız yükselen kombo** yap. Aynı veya daha alt platforma inmek komboyu bitirir.
 - Sarı platformlar yaylı, mor platformlar hareketli, pembe platformlar kırılgandır.
 - Her 5 kristalde 8 saniyelik mıknatıs ve çift kristal puanı kazanırsın.
 - Her 25 katta bonus; her 100 katta artan zorluk. Her 10 katta geniş, sabit bir platform bulunur.
@@ -84,3 +84,7 @@ Arkadaşların deponun **Code** menüsündeki adresi kullanarak klonlayabilir ve
 - `verify.cjs`: bağımlılıksız regresyon testleri
 
 Grafikler ve oyun efektleri kodla üretilir. Arka plan müziği depodaki MP3 dosyasından oynatılır; oyun sırasında harici hizmetten indirme yapılmaz. Referans fotoğraf bu depoya dahil değildir. Icy Tower ile resmi bir bağlantısı yoktur.
+
+Kombo 8× ile sınırlı değildir; zincir sürdükçe 9×, 10× ve ötesine çıkar, puan da aynı çarpanı kullanır. Duvar sıçrayışının fiziksel güç artışı denge için sınırlı kalır.
+
+Market: **14 kristale Kombo saati** (ilk 30 saniye yeni kombolar için 5 saniye süre) ve **18 kristale Kristal çantası** (ilk 25 saniye cüzdana çift kristal). EbuCehil dolabında Klasik, Bordo, Altın, Disco ve Buz kostümleri bulunur.

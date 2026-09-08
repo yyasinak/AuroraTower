@@ -7,15 +7,15 @@ function setText(id,value){const node=$(id),text=String(value);if(node.textConte
 const STEP=1/120;let accumulator=0;
 const WORLD=540,GAP=86,GRAV=1550;
 let W=innerWidth,H=innerHeight,DPR=1,scale=1,ox=0,time=0,last=0,mode='menu',camera=0,highest=0,score=0,maxFloor=0,combo=0,comboTimer=0,lastFloor=0,hazard=-460,elapsed=0,shake=0,muted=false,audio=null,best=0,platforms=[],particles=[],trails=[],orbs=[],jumpBuffer=0;
-let map='aurora',tapes=[],idleTime=0,jumpBoost=0;
-const goods={magnet:{name:'Mıknatıs',price:10,detail:'İlk 15 sn mıknatıs + 2× kristal puanı'},jump:{name:'Yaylı ayakkabı',price:12,detail:'İlk 20 sn daha yüksek sıçrayış'},rocket:{name:'Roket kalkışı',price:20,detail:'Tura 10 katlık roketle başla'}};
+let map='aurora',tapes=[],idleTime=0,jumpBoost=0,comboBoost=0,walletBoost=0;
+const goods={magnet:{name:'Mıknatıs',price:10,detail:'İlk 15 sn mıknatıs + 2× kristal puanı'},jump:{name:'Yaylı ayakkabı',price:12,detail:'İlk 20 sn daha yüksek sıçrayış'},rocket:{name:'Roket kalkışı',price:20,detail:'Tura 10 katlık roketle başla'},combo:{name:'Kombo saati',price:14,detail:'İlk 30 sn kombo süresi 5 saniye'},wallet:{name:'Kristal çantası',price:18,detail:'İlk 25 sn kristaller cüzdana 2 kat eklenir'}};
 let wallet={balance:0,pending:[]},walletSaved=true;
 try{const saved=JSON.parse(localStorage.getItem('auroraTowerWallet'));if(saved&&Number.isSafeInteger(saved.balance)&&saved.balance>=0){wallet.balance=saved.balance;wallet.pending=Array.isArray(saved.pending)?[...new Set(saved.pending.filter(id=>Object.hasOwn(goods,id)))]:[];}}catch{}
 function saveWallet(){try{localStorage.setItem('auroraTowerWallet',JSON.stringify(wallet));walletSaved=true;}catch{walletSaved=false;}}
 function renderShop(){setText('walletBalance',wallet.balance+' ◆');setText('walletHud','CÜZDAN '+wallet.balance+' ◆');setText('shopNote',walletSaved?'Her ürün sonraki turda bir kez kullanılır. Harita değiştirirken korunur.':'Tarayıcı kaydı kullanılamıyor: cüzdan yalnızca bu oturumda saklanıyor.');$('shopItems').innerHTML=Object.entries(goods).map(([id,g])=>{const queued=wallet.pending.includes(id);return `<button type="button" data-buy="${id}" ${queued||wallet.balance<g.price?'disabled':''}><strong>${g.name}</strong><small>${g.detail}</small><b>${queued?'SONRAKİ TURDA HAZIR':g.price+' ◆'}</b></button>`;}).join('');document.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>buyBooster(b.dataset.buy));}
 function buyBooster(id){if(mode==='playing'||mode==='paused'||!Object.hasOwn(goods,id)||wallet.pending.includes(id)||wallet.balance<goods[id].price)return false;wallet.balance-=goods[id].price;wallet.pending.push(id);saveWallet();renderShop();tone(700,.12);return true;}
-function earnCrystal(){wallet.balance=Math.min(Number.MAX_SAFE_INTEGER,wallet.balance+1);saveWallet();setText('walletHud','CÜZDAN '+wallet.balance+' ◆');}
-function useBoosters(){const pending=wallet.pending.slice();wallet.pending=[];saveWallet();for(const id of pending){if(id==='magnet')rush=15;if(id==='jump')jumpBoost=20;if(id==='rocket')activateRocket();}renderShop();}
+function earnCrystal(){wallet.balance=Math.min(Number.MAX_SAFE_INTEGER,wallet.balance+(walletBoost>0?2:1));saveWallet();setText('walletHud','CÜZDAN '+wallet.balance+' ◆');}
+function useBoosters(){const pending=wallet.pending.slice();wallet.pending=[];saveWallet();for(const id of pending){if(id==='magnet')rush=15;if(id==='jump')jumpBoost=20;if(id==='rocket')activateRocket();if(id==='combo')comboBoost=30;if(id==='wallet')walletBoost=25;}renderShop();}
 function dancing(){return map==='retro'&&mode==='playing'&&p.ground&&idleTime>.4&&Math.abs(p.vx)<10;}
 
 try{if(localStorage.getItem('auroraTowerMap')==='retro')map='retro';}catch{}
@@ -27,8 +27,9 @@ let pollen=[],pollenClock=0,rockets=[],rocketTarget=null,rocketTrail=0,spinTime=
 const outfits={melduk:[{name:'Klasik',body:'#542638',boots:'#302735',style:'classic'},{name:'Bal',body:'#e8b342',boots:'#6b4936',style:'stripe'},{name:'Gece',body:'#303760',boots:'#bfbce6',style:'star'},{name:'Ada',body:'#6aaf8b',boots:'#f2e6cd',style:'jacket'}],white:[{name:'Klasik',body:'#202936',boots:'#d8dfdf',style:'classic'},{name:'Kolej',body:'#ece1cf',boots:'#3c536b',style:'jacket'},{name:'Kızıl',body:'#943d43',boots:'#282c37',style:'stripe'},{name:'Uzay',body:'#636090',boots:'#dae4f4',style:'star'}]};
 outfits.melduk.push({name:'Disco 86',body:'#f05da8',boots:'#6ef0e0',style:'retro'});
 outfits.white.push({name:'Miami 86',body:'#a9ecdf',boots:'#faf0d9',style:'retro'});
-let wardrobe={melduk:0,white:0};
-try{const saved=JSON.parse(localStorage.getItem('auroraTowerOutfits'));for(const id of ['melduk','white'])if(Number.isInteger(saved?.[id])&&saved[id]>=0&&saved[id]<outfits[id].length)wardrobe[id]=saved[id];}catch{}
+outfits.ebucehil=[{name:'Klasik',body:'#181a20',boots:'#171921',style:'shirt'},{name:'Bordo',body:'#7f3147',boots:'#241c23',style:'jacket'},{name:'Altın',body:'#c19b44',boots:'#33241d',style:'stripe'},{name:'Disco',body:'#7153ae',boots:'#72e9d4',style:'retro'},{name:'Buz',body:'#88bcd0',boots:'#e9eeee',style:'star'}];
+let wardrobe={melduk:0,white:0,ebucehil:0};
+try{const saved=JSON.parse(localStorage.getItem('auroraTowerOutfits'));for(const id of Object.keys(outfits))if(Number.isInteger(saved?.[id])&&saved[id]>=0&&saved[id]<outfits[id].length)wardrobe[id]=saved[id];}catch{}
 function currentSkin(id=selected){return outfits[id]?{...characters[id],...outfits[id][wardrobe[id]] ,name:characters[id].name}:characters[id];}
 function chooseOutfit(index){if(!outfits[selected]||mode==='playing'||mode==='paused'||!Number.isInteger(index)||index<0||index>=outfits[selected].length)return;wardrobe[selected]=index;try{localStorage.setItem('auroraTowerOutfits',JSON.stringify(wardrobe));}catch{}renderCharacters();}
 function renderWardrobe(){const choices=outfits[selected];$('wardrobe').classList.toggle('hidden',!choices);if(!choices)return;$('outfitOptions').innerHTML=choices.map((o,i)=>`<button type="button" data-outfit="${i}" aria-pressed="${wardrobe[selected]===i}" style="--cloth:${o.body}"><i></i>${o.name}</button>`).join('');document.querySelectorAll('[data-outfit]').forEach(b=>b.onclick=()=>chooseOutfit(Number(b.dataset.outfit)));}
@@ -137,7 +138,7 @@ function generate(){
  }
 }
 
-function reset(){time=0;accumulator=0;p={support:null,x:WORLD/2,y:0,vx:0,vy:0,w:24,h:36,ground:true,coyote:.1,wall:0,wallLock:0,dash:true,dashTime:0,face:1,land:0};platforms=[];orbs=[];particles=[];trails=[];camera=0;highest=0;score=0;maxFloor=0;combo=0;comboTimer=0;lastFloor=0;hazard=-460;elapsed=0;shake=0;jumpBuffer=0;keys.clear();idleTime=0;jumpBoost=0;tapes=[];crumbs=[];crumbClock=0;rockets=[];rocketTarget=null;rocketTrail=0;spinTime=0;pollen=[];pollenClock=0;bestCombo=0;landedFloor=0;newRecord=false;meteors=[];meteorClock=0;skyTime=0;milestone=0;crystals=0;rush=0;noticeTimer=0;$('notice').style.opacity=0;$('combo').style.opacity=0;generate();p.support=platforms[0];}
+function reset(){time=0;accumulator=0;p={support:null,x:WORLD/2,y:0,vx:0,vy:0,w:24,h:36,ground:true,coyote:.1,wall:0,wallLock:0,dash:true,dashTime:0,face:1,land:0};platforms=[];orbs=[];particles=[];trails=[];camera=0;highest=0;score=0;maxFloor=0;combo=0;comboTimer=0;lastFloor=0;hazard=-460;elapsed=0;shake=0;jumpBuffer=0;keys.clear();idleTime=0;jumpBoost=0;comboBoost=0;walletBoost=0;tapes=[];crumbs=[];crumbClock=0;rockets=[];rocketTarget=null;rocketTrail=0;spinTime=0;pollen=[];pollenClock=0;bestCombo=0;landedFloor=0;newRecord=false;meteors=[];meteorClock=0;skyTime=0;milestone=0;crystals=0;rush=0;noticeTimer=0;$('notice').style.opacity=0;$('combo').style.opacity=0;generate();p.support=platforms[0];}
 function start(){reset();$('overlay').classList.remove('results-mode');mode='playing';window.TowerMusic?.setPlaying(map==='retro');useBoosters();$('overlay').classList.add('hidden');tone(550,.2);}
 function overlay(kind){renderShop();$('shop').classList.toggle('hidden',kind==='paused');
  $('overlay').classList.remove('hidden');
@@ -174,8 +175,8 @@ function registerLanding(floor){
  landedFloor=floor;
  if(floor<=lastFloor){combo=0;comboTimer=0;return;}
  const skip=floor-lastFloor;
- combo=comboTimer>0?Math.min(combo+1,8):1;
- comboTimer=3.5;bestCombo=Math.max(bestCombo,combo);
+ combo=comboTimer>0?combo+1:1;
+ comboTimer=comboBoost>0?5:3.5;bestCombo=Math.max(bestCombo,combo);
  score+=skip*10*combo;lastFloor=floor;
  setText('comboLabel',skip>=2?skip+' KAT TEK SIÇRAYIŞTA':'YÜKSELİŞ KOMBOSU');
  if(skip>=2)shake=2;
@@ -263,7 +264,7 @@ function updatePlatforms(dt){
   }else{p.ground=false;p.support=null;}
  }
 }
-function update(dt){if(mode!=='playing'){if(mode==='menu'){time+=dt;camera=Math.sin(time*.15)*12;}return;}time+=dt;elapsed+=dt;jumpBoost=Math.max(0,jumpBoost-dt);idleTime=p.ground&&Math.abs(p.vx)<10&&!keys.has('KeyA')&&!keys.has('KeyD')&&!keys.has('ArrowLeft')&&!keys.has('ArrowRight')?idleTime+dt:0;spinTime=Math.max(0,spinTime-dt);updatePlatforms(dt);updateSky(dt);rush=Math.max(0,rush-dt);noticeTimer=Math.max(0,noticeTimer-dt);$('notice').style.opacity=noticeTimer>0?1:0;comboTimer=Math.max(0,comboTimer-dt);if(!comboTimer)combo=0;jumpBuffer-=dt;p.coyote-=dt;p.wallLock-=dt;p.land=Math.max(0,p.land-dt*4);p.dashTime=Math.max(0,p.dashTime-dt);let dir=(keys.has('ArrowRight')||keys.has('KeyD')?1:0)-(keys.has('ArrowLeft')||keys.has('KeyA')?1:0);if(dir)p.face=dir;
+function update(dt){if(mode!=='playing'){if(mode==='menu'){time+=dt;camera=Math.sin(time*.15)*12;}return;}time+=dt;elapsed+=dt;comboBoost=Math.max(0,comboBoost-dt);walletBoost=Math.max(0,walletBoost-dt);jumpBoost=Math.max(0,jumpBoost-dt);idleTime=p.ground&&Math.abs(p.vx)<10&&!keys.has('KeyA')&&!keys.has('KeyD')&&!keys.has('ArrowLeft')&&!keys.has('ArrowRight')?idleTime+dt:0;spinTime=Math.max(0,spinTime-dt);updatePlatforms(dt);updateSky(dt);rush=Math.max(0,rush-dt);noticeTimer=Math.max(0,noticeTimer-dt);$('notice').style.opacity=noticeTimer>0?1:0;comboTimer=Math.max(0,comboTimer-dt);if(!comboTimer)combo=0;jumpBuffer-=dt;p.coyote-=dt;p.wallLock-=dt;p.land=Math.max(0,p.land-dt*4);p.dashTime=Math.max(0,p.dashTime-dt);let dir=(keys.has('ArrowRight')||keys.has('KeyD')?1:0)-(keys.has('ArrowLeft')||keys.has('KeyA')?1:0);if(dir)p.face=dir;
 if(p.dashTime<=0&&p.wallLock<=0){if(dir)p.vx+=dir*(p.ground?1650:1080)*dt;else p.vx*=Math.exp(-(p.ground?8:1.3)*dt);p.vx=Math.max(-430,Math.min(430,p.vx));}
 p.wall=p.x<=p.w/2+1?-1:p.x>=WORLD-p.w/2-1?1:0;
 const held=keys.has('Space')||keys.has('ArrowUp')||keys.has('KeyW');
@@ -291,7 +292,7 @@ for(let i=platforms.length-1;i>=0;i--){const a=platforms[i];
 
 highest=Math.max(highest,p.y);maxFloor=Math.max(maxFloor,Math.floor(highest/GAP));
 while(maxFloor>=milestone+25){milestone+=25;const reward=milestone%100===0?1000:250;score+=reward;announce(milestone%100===0?theme().name.split(' / ')[1]:milestone+'. KAT!', '+'+reward+' puan · '+(milestone%100===0?'Zorluk '+(difficulty().tier+1)+' · Daha dar platformlar, daha hızlı fırtına':'Yükselmeye devam!'));burst(p.x,p.y+40,'#ffe6a3',32,240);tone(950,.25,'triangle');}
-setText('goal','SONRAKİ HEDEF: '+(milestone+25)+'. KAT');setText('crystalStatus',rush>0?'KRİSTAL ŞÖLENİ · '+Math.ceil(rush)+' sn · 2× puan + mıknatıs':'KRİSTAL '+(crystals%5)+'/5 · ŞÖLENE DOĞRU');let target=Math.max(0,highest-H/scale*.46);camera+=(target-camera)*(1-Math.exp(-5*dt));hazard=Math.max(hazard+dt*(elapsed<8?15:Math.min(65,27+elapsed*.3)+difficulty().stormBoost),camera-170);generate();platforms=platforms.filter(a=>a.y>camera-550);orbs=orbs.filter(a=>a.y>camera-400);for(let o of orbs){if(o.taken)continue;let distance=Math.hypot(o.x-p.x,o.y-(p.y+18));if(rush>0&&distance<180){o.x+=(p.x-o.x)*Math.min(1,dt*9);o.y+=(p.y+18-o.y)*Math.min(1,dt*9);distance=Math.hypot(o.x-p.x,o.y-(p.y+18));}if(distance<32){o.taken=true;score+=rush>0?50:25;crystals++;earnCrystal();if(crystals%5===0){rush=Math.max(rush,8);announce('KRİSTAL ŞÖLENİ','8 saniye mıknatıs + kristallerden 2× puan!');}tone(1200,.12);burst(o.x,o.y,'#ffe6a3',14,125);}}
+setText('goal','SONRAKİ HEDEF: '+(milestone+25)+'. KAT'+(comboBoost>0?' · KOMBO SAATİ '+Math.ceil(comboBoost)+' sn':'')+(walletBoost>0?' · 2× CÜZDAN '+Math.ceil(walletBoost)+' sn':''));setText('crystalStatus',rush>0?'KRİSTAL ŞÖLENİ · '+Math.ceil(rush)+' sn · 2× puan + mıknatıs':'KRİSTAL '+(crystals%5)+'/5 · ŞÖLENE DOĞRU');let target=Math.max(0,highest-H/scale*.46);camera+=(target-camera)*(1-Math.exp(-5*dt));hazard=Math.max(hazard+dt*(elapsed<8?15:Math.min(65,27+elapsed*.3)+difficulty().stormBoost),camera-170);generate();platforms=platforms.filter(a=>a.y>camera-550);orbs=orbs.filter(a=>a.y>camera-400);for(let o of orbs){if(o.taken)continue;let distance=Math.hypot(o.x-p.x,o.y-(p.y+18));if(rush>0&&distance<180){o.x+=(p.x-o.x)*Math.min(1,dt*9);o.y+=(p.y+18-o.y)*Math.min(1,dt*9);distance=Math.hypot(o.x-p.x,o.y-(p.y+18));}if(distance<32){o.taken=true;score+=rush>0?50:25;crystals++;earnCrystal();if(crystals%5===0){rush=Math.max(rush,8);announce('KRİSTAL ŞÖLENİ','8 saniye mıknatıs + kristallerden 2× puan!');}tone(1200,.12);burst(o.x,o.y,'#ffe6a3',14,125);}}
 tapes=tapes.filter(t=>!t.taken&&t.y>camera-400);for(const tape of tapes)if(Math.hypot(tape.x-p.x,tape.y-p.y-18)<30){tape.taken=true;score+=150;p.dash=true;announce('SIDE A · +150','Kaset bulundu · Havada atılma hazır');tone(1400,.15,'square',.025);burst(tape.x,tape.y,'#ff9fda',18,130);}
 rockets=rockets.filter(r=>!r.taken&&r.y>camera-400);for(const r of rockets)if(rocketTarget===null&&Math.hypot(r.x-p.x,r.y-p.y-18)<30){r.taken=true;activateRocket();break;}
 updatePollen(dt);

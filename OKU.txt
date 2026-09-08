@@ -15,7 +15,7 @@ IPUCLARI
 Kosarak hiz kazanmak ziplama yuksekligini artirir.
 Duvarda ziplamaya basarak duvardan sekebilirsin.
 3,5 saniye icinde daha once inmedigin daha yuksek bir platforma inerek kombo yap.
-Ayni veya daha alcak platforma inmek komboyu hemen bitirir. En fazla 8x.
+Ayni veya daha alcak platforma inmek komboyu hemen bitirir. Kombo sinirsiz artar.
 Altin kristaller 25 puan verir.
 Sari platformlar yaylidir; mor platformlar hareket eder.
 Pembe platformlar uzerine bastiktan sonra kirilir.
