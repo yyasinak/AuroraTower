@@ -40,17 +40,7 @@
     try { localStorage.setItem('auroraMusicVolume', String(volume)); } catch {}
     sync();
   };
-  document.getElementById('musicFile').onchange = event => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    audio.pause();
-    if (source?.startsWith('blob:')) URL.revokeObjectURL(source);
-    source = URL.createObjectURL(file);
-    audio.src = source;
-    status.textContent = file.name + ' · Neon 1986 turunda çalar';
-    sync();
-  };
-  audio.onerror = () => { status.textContent = 'Yerel şarkı bulunamadı veya oynatılamadı. MP3, OGG veya WAV seç.'; };
+  audio.onerror = () => { status.textContent = 'Şarkı açılamadı. Oyunu assets klasörüyle birlikte yeniden indir.'; };
   window.TowerMusic = {
     setPlaying(value) { active = value; sync(); },
     fadeOut() {
