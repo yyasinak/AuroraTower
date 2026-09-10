@@ -1,5 +1,7 @@
 # Aurora Tower
 
+Melduk geçici olarak devre dışı. Karakter, kıyafetleri, polen efekti ve kayıtlı kostüm tercihi korunur. Geri açmak için `game.js` içindeki `characters.melduk` tanımında `enabled:false` değerini `enabled:true` yap. Önceden Melduk seçilmişse oyun şimdilik Nova ile açılır; kayıtlı tercih silinmez.
+
 Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
 
 **Yeni harita: Neon 1986.** Giriş veya tur sonu ekranında Aurora ve 80'ler temalı Neon 1986 arasında seçim yap. Neon şehir, çizgili gün batımı, palmiyeler ve hareketli perspektif ızgara; her 100 katta değişen renklerle tırmanışa eşlik eder. Rekorlar haritaya göre ayrı saklanır.
