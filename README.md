@@ -1,5 +1,11 @@
 # Aurora Tower
 
+## Android / POCO X3 NFC
+
+Mobil uygulama dikey çalışır. Telefonu sağa/sola eğerek hareket et; oyun alanına dokunarak zıpla, basılı tutarak sürekli zıpla. **Denge ayarı** mevcut tutuşunu merkez kabul eder. Ekrandaki yön düğmeleri alternatif kontrol, ↗ düğmesi atılmadır. Müzik APK içinde bulunur; internet gerekmez. Telefon uygulamasının rekor ve cüzdanı masaüstünden ayrıdır.
+
+Android kaynakları `mobile/` altında; Windows'ta Android SDK 35, build-tools 36 ve JDK 21 ile `mobile/build.ps1` derlenebilir. APK ve yerel imza anahtarı `mobile/build/` içinde oluşur; bu klasör Git'e dahil edilmez. Aynı uygulamayı kayıtları koruyarak güncellemek için imza anahtarını sakla.
+
 Melduk geçici olarak devre dışı. Karakter, kıyafetleri, polen efekti ve kayıtlı kostüm tercihi korunur. Geri açmak için `game.js` içindeki `characters.melduk` tanımında `enabled:false` değerini `enabled:true` yap. Önceden Melduk seçilmişse oyun şimdilik Nova ile açılır; kayıtlı tercih silinmez.
 
 Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.

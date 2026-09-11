@@ -6,3 +6,4 @@ Thumbs.db
 .env.*
 .codex/
 .agents/
+mobile/build/
