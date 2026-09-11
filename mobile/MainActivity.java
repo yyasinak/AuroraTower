@@ -12,6 +12,7 @@ public class MainActivity extends Activity implements SensorEventListener {
   web=new WebView(this);setContentView(web);
   web.setOverScrollMode(View.OVER_SCROLL_NEVER);web.setBackgroundColor(0xff080c1c);
   web.getSettings().setJavaScriptEnabled(true);web.getSettings().setDomStorageEnabled(true);
+  web.getSettings().setSupportZoom(false);web.getSettings().setBuiltInZoomControls(false);web.getSettings().setDisplayZoomControls(false);web.getSettings().setTextZoom(100);web.setInitialScale(100);
   web.getSettings().setMediaPlaybackRequiresUserGesture(false);
   web.setWebViewClient(new WebViewClient(){@Override public boolean shouldOverrideUrlLoading(WebView v,WebResourceRequest r){return true;}});
   web.setWebChromeClient(new WebChromeClient());

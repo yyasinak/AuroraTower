@@ -9,6 +9,6 @@
   };
   document.getElementById('calibrate').onclick=()=>window.TowerTilt.calibrate();
   const toggle=document.getElementById('tiltMode');
-  function label(){toggle.textContent=enabled?'KONTROL: EĞME':'KONTROL: TUŞ';}
+  function label(){toggle.textContent=enabled?'EĞME':'TUŞ';}
   toggle.onclick=()=>{enabled=!enabled;window.TowerTilt.calibrate();try{localStorage.setItem('auroraTiltEnabled',String(enabled));}catch{}label();};label();
 })();
