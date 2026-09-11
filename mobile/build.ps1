@@ -5,11 +5,12 @@ $buildTools=Join-Path $sdk 'build-tools/36.0.0'
 $jdk='C:/Program Files/Java/jdk-21'
 $android=Join-Path $sdk 'platforms/android-35/android.jar'
 $out=Join-Path $PSScriptRoot 'build'
-New-Item -ItemType Directory -Force "$out/assets/assets/audio","$out/classes","$out/dex" | Out-Null
+New-Item -ItemType Directory -Force "$out/assets/assets/audio","$out/assets/assets/images","$out/classes","$out/dex" | Out-Null
 Copy-Item "$project/index.html","$project/game.js","$project/music.js","$project/mobile-input.js" "$out/assets/"
 Copy-Item "$project/assets/audio/stayin-alive.mp3" "$out/assets/assets/audio/"
+Copy-Item "$project/assets/images/aurora-tower-icon.png" "$out/assets/assets/images/"
 function Check {if($LASTEXITCODE -ne 0){throw "Build failed ($LASTEXITCODE)"}}
-& "$buildTools/aapt.exe" package -f -M "$PSScriptRoot/AndroidManifest.xml" -I $android -A "$out/assets" -F "$out/base.apk"; Check
+& "$buildTools/aapt.exe" package -f -M "$PSScriptRoot/AndroidManifest.xml" -I $android -S "$PSScriptRoot/res" -A "$out/assets" -F "$out/base.apk"; Check
 & "$jdk/bin/javac.exe" -encoding UTF-8 -source 8 -target 8 -bootclasspath $android -d "$out/classes" "$PSScriptRoot/MainActivity.java"; Check
 $classes=@(Get-ChildItem "$out/classes" -Recurse -Filter '*.class' | ForEach-Object {$_.FullName})
 & "$buildTools/d8.bat" --lib $android --min-api 26 --output "$out/dex" @classes; Check
