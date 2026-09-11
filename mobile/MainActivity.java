@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements SensorEventListener {
  }
  @Override public void onResume(){super.onResume();if(web!=null)web.onResume();if(sensor!=null)sensors.registerListener(this,sensor,SensorManager.SENSOR_DELAY_GAME);}
  @Override public void onPause(){if(web!=null){web.evaluateJavascript("window.TowerMobilePause&&window.TowerMobilePause()",null);web.onPause();}sensors.unregisterListener(this);super.onPause();}
- @Override public void onSensorChanged(SensorEvent e){if(e.timestamp-last<25000000L)return;last=e.timestamp;float x=-e.values[0];web.evaluateJavascript("window.TowerTilt&&window.TowerTilt.sample("+Float.toString(x)+")",null);}
+ @Override public void onSensorChanged(SensorEvent e){if(e.timestamp-last<16000000L)return;last=e.timestamp;float x=-e.values[0];web.evaluateJavascript("window.TowerTilt&&window.TowerTilt.sample("+Float.toString(x)+")",null);}
  @Override public void onAccuracyChanged(Sensor s,int a){}
  @Override public void onBackPressed(){web.evaluateJavascript("window.TowerMobilePause&&window.TowerMobilePause()",null);}
  @Override public void onDestroy(){web.destroy();super.onDestroy();}
