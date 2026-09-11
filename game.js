@@ -104,7 +104,7 @@ function drawEnvironment(){if(map==='retro'){drawRetro();return;}
 
 renderCharacters();renderMaps();renderShop();
 try{best=Number(localStorage.getItem(bestKey()))||0;muted=localStorage.getItem('auroraTowerMuted')==='true';}catch{}
-setText('best',best);setText('sound',muted?'SES KAPALI':'SES AÇIK');
+setText('best',best);setText('sound',muted?'SES KAPALI':'SES AÇIK');$('sound').classList.toggle('off',muted);
 function resize(){W=innerWidth;H=innerHeight;const maxDpr=mobileRendering?1.55:2,pixelBudget=mobileRendering?1800000:3500000;DPR=Math.min(devicePixelRatio||1,maxDpr,Math.sqrt(pixelBudget/(W*H)));canvas.width=Math.round(W*DPR);canvas.height=Math.round(H*DPR);scale=Math.min(W/620,H/760,1.45);ox=(W-WORLD*scale)/2;}
 addEventListener('resize',resize);resize();
 function tone(freq,duration=.1,type='sine',vol=.04){if(muted)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();let o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(freq,audio.currentTime);o.frequency.exponentialRampToValueAtTime(freq*.55,audio.currentTime+duration);g.gain.setValueAtTime(vol,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);}catch{}}
@@ -213,7 +213,7 @@ function drawMeteors(){
 }
 function pause(){accumulator=0;if(mode==='playing'){mode='paused';window.TowerMusic?.setPlaying(false);keys.clear();overlay('paused');}else if(mode==='paused'){mode='playing';window.TowerMusic?.setPlaying(map==='retro');$('overlay').classList.add('hidden');}}
 function die(){if(mode==='over')return;mode='over';window.TowerMusic?.fadeOut();previousBest=best;newRecord=Math.floor(score)>best;$('combo').style.opacity=0;$('notice').style.opacity=0;burst(p.x,p.y+18,'#ff779d',35,260);arcadeDeath();best=Math.max(best,Math.floor(score));try{localStorage.setItem(bestKey(),best);}catch{}setText('best',best);overlay('over');}
-$('start').onclick=()=>{if(mode==='paused')pause();else start();};$('pause').onclick=pause;$('sound').onclick=()=>{muted=!muted;setText('sound',muted?'SES KAPALI':'SES AÇIK');try{localStorage.setItem('auroraTowerMuted',muted);}catch{}};
+$('start').onclick=()=>{if(mode==='paused')pause();else start();};$('pause').onclick=pause;$('sound').onclick=()=>{muted=!muted;setText('sound',muted?'SES KAPALI':'SES AÇIK');$('sound').classList.toggle('off',muted);try{localStorage.setItem('auroraTowerMuted',muted);}catch{}};
 function press(code){if(code==='KeyP'||code==='Escape'){pause();return;}if(code==='Enter'&&mode!=='playing'){if(mode==='paused')pause();else start();return;}if(mode!=='playing')return;keys.add(code);if(['Space','ArrowUp','KeyW'].includes(code))jumpBuffer=.14;if(code==='ShiftLeft'||code==='ShiftRight')dash();}
 addEventListener('keydown',e=>{if(e.target?.closest?.('[data-character], [data-outfit], [data-map], [data-buy], #musicVolume, #musicToggle')&&(e.code==='Enter'||e.code==='Space'))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&e.code!=='Tab')e.preventDefault();if(!e.repeat)press(e.code);});addEventListener('keyup',e=>keys.delete(e.code));addEventListener('blur',()=>{if(mode==='playing')pause();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='playing')pause();last=0;accumulator=0;});
