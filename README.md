@@ -10,6 +10,8 @@ Mobil arayüzde soldaki **SOL/SAĞ** yön pedi ile sağdaki **ZIPLA/ATIL** düğ
 
 Mobil HUD, dört ayar düğmesini sağ üstte 2×2 sabit bir araç çubuğunda tutar. Oyun alanı telefonda yakın kadraj kullanır; 50 katlık kontrol noktaları platform üzerinde ışıklı plakayla, her 100. kat ise büyük ekran duyurusuyla gösterilir. Kristaller hareketli platformlara bağlı kalır ve mıknatıs etkisi başlayana kadar platformun üstünden ayrılmaz.
 
+Başlangıç marketi daha uzun vadeli kristal ekonomisi için yeniden fiyatlandırılmıştır. **Fırtına freni** ilk 30 saniyede fırtınayı %35 yavaşlatır; **Çelik taban** aynı süre boyunca kırılgan platformları korur. Satın alınan bütün güçlendiriciler yalnızca sonraki turda bir kez kullanılır.
+
 Android kaynakları `mobile/` altında; Windows'ta Android SDK 35, build-tools 36 ve JDK 21 ile `mobile/build.ps1` derlenebilir. APK ve yerel imza anahtarı `mobile/build/` içinde oluşur; bu klasör Git'e dahil edilmez. Aynı uygulamayı kayıtları koruyarak güncellemek için imza anahtarını sakla.
 
 Melduk geçici olarak devre dışı. Karakter, kıyafetleri, polen efekti ve kayıtlı kostüm tercihi korunur. Geri açmak için `game.js` içindeki `characters.melduk` tanımında `enabled:false` değerini `enabled:true` yap. Önceden Melduk seçilmişse oyun şimdilik Nova ile açılır; kayıtlı tercih silinmez.
