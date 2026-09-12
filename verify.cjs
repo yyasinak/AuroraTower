@@ -62,6 +62,7 @@ console.log('PASS: melduk/white selection and drawing, airborne pollen, pause, r
 // Platforms after a grounded player's surface must still move and crumble.
 t.start();s=t.state();let later=s.platforms[2];later.moving=true;later.base=200;later.phase=0;later.x=200;later.amplitude=30;later.moveSpeed=2;
 let crumble=s.platforms[3];crumble.crack=.01;let before=later.x;t.update(1/120);assert.notEqual(later.x,before);t.update(1/120);assert(crumble.broken,'A lower collision cannot stop an upper crumble timer');
+const crystalPlatform=s.platforms.find(a=>a.n===6),anchoredCrystal=s.orbs.find(o=>o.anchor===crystalPlatform);Object.assign(crystalPlatform,{moving:true,base:180,x:180,phase:0,amplitude:30,moveSpeed:3});t.update(1/120);assert.equal(anchoredCrystal.x,crystalPlatform.x+crystalPlatform.w/2,'A crystal must stay centered above its moving platform');assert.equal(anchoredCrystal.y,crystalPlatform.y+34);
 // Ride a complete oscillation without accumulating relative drift or combo.
 t.start();s=t.state();const ride=s.platforms[0];Object.assign(ride,{x:190,prevX:190,base:190,w:160,moving:true,phase:0,amplitude:40,moveSpeed:2});s.p.x=270;
 for(let i=0;i<480;i++){t.update(1/120);assert(t.state().p.ground);assert(Math.abs(t.state().p.x-ride.x-80)<1e-7);assert.equal(t.state().combo,0);}
