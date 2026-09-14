@@ -8,7 +8,7 @@ Mobil uygulama dikey çalışır. Telefonu sağa/sola eğerek hareket et; oyun a
 
 Mobil arayüzde soldaki **SOL/SAĞ** yön pedi ile sağdaki **ZIPLA/ATIL** düğmeleri bağımsız parmak kimlikleriyle gerçek çoklu dokunmayı destekler. Basılı komutlar her fizik adımında korunur; zıplarken yön vermek kesilmez. Hedef ve kristal bilgileri sağ üstte, kontrol alanından uzakta gösterilir. Açılışta kısa Aurora Tower animasyonu gösterilir; uygulama simgesi `assets/images/aurora-tower-icon.png` dosyasından gelir.
 
-Mobil HUD, dört ayar düğmesini sağ üstte 2×2 sabit bir araç çubuğunda tutar. Oyun alanı telefonda yakın kadraj kullanır; 50 katlık kontrol noktaları platform üzerinde ışıklı plakayla, her 100. kat ise büyük ekran duyurusuyla gösterilir. Kristaller hareketli platformlara bağlı kalır ve mıknatıs etkisi başlayana kadar platformun üstünden ayrılmaz.
+Mobil HUD, dört ayar düğmesini sağ üstte 2×2 sabit bir araç çubuğunda tutar. Oyun alanı telefonda yakın kadraj kullanır; 50 katlık kontrol noktaları platform üzerinde ışıklı plakayla, her 100. kat ise sağdan girip soldan çıkan özel duyuruyla gösterilir. Küçük oyun bildirimleri görüşü kapatmamak için üst kenara yakın durur. Kristaller hareketli platformlara bağlı kalır ve mıknatıs etkisi başlayana kadar platformun üstünden ayrılmaz.
 
 Başlangıç marketi daha uzun vadeli kristal ekonomisi için yeniden fiyatlandırılmıştır. **Fırtına freni** ilk 30 saniyede fırtınayı %35 yavaşlatır; **Çelik taban** aynı süre boyunca kırılgan platformları korur. Satın alınan bütün güçlendiriciler yalnızca sonraki turda bir kez kullanılır.
 
@@ -17,6 +17,8 @@ Android kaynakları `mobile/` altında; Windows'ta Android SDK 35, build-tools 3
 Melduk geçici olarak devre dışı. Karakter, kıyafetleri, polen efekti ve kayıtlı kostüm tercihi korunur. Geri açmak için `game.js` içindeki `characters.melduk` tanımında `enabled:false` değerini `enabled:true` yap. Önceden Melduk seçilmişse oyun şimdilik Nova ile açılır; kayıtlı tercih silinmez.
 
 Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
+
+Girişte **Normal** ve **Fırtına** zorlukları seçilebilir. Normal modun takip hızı dengeli ama önceki sürümden biraz daha yüksektir. Fırtına modunda takip %32 hızlanır; platform genişliği, hareket ve kırılganlık bir zorluk kademesi önden başlar. Her harita ve zorluk için rekor ayrı tutulur. Tur sırasında kayıtlı rekor geçildiğinde **Yeni Rekor** duyurusu anında görünür.
 
 **Yeni harita: Neon 1986.** Giriş veya tur sonu ekranında Aurora ve 80'ler temalı Neon 1986 arasında seçim yap. Neon şehir, çizgili gün batımı, palmiyeler ve hareketli perspektif ızgara; her 100 katta değişen renklerle tırmanışa eşlik eder. Rekorlar haritaya göre ayrı saklanır.
 
@@ -28,7 +30,7 @@ Neon 1986'da sabit durunca karakter disko dansı yapar. Bu görsel animasyon fı
 
 Topladığın her kristal kalıcı cüzdana **1 kristal** ekler; ölümde kaybolmaz ve iki haritada ortak kullanılır. Çift puan bonusu cüzdan miktarını ikiye katlamaz. Önceki sürümlerde toplanan kristaller kaydedilmediği için geriye dönük eklenmez.
 
-Başlangıç marketinde **10 kristale 15 saniyelik mıknatıs**, **12 kristale 20 saniyelik yaylı ayakkabı**, **20 kristale 10 katlık roket kalkışı** alabilirsin. Her üründen sonraki tur için bir adet alınabilir; ürünler bir sonraki tur başlarken otomatik tüketilir. Harita değişimi ve sayfa yenileme satın alınmış ürünleri korur. Cüzdan aynı tarayıcı ve adresin yerel kaydında tutulur; farklı cihazlara otomatik taşınmaz.
+Başlangıç marketinde mıknatıs **25**, yaylı ayakkabı **30**, kombo saati **35**, çelik taban **42**, kristal çantası **45**, roket kalkışı **50** ve fırtına freni **55** kristaldir. Her üründen sonraki tur için bir adet alınabilir; ürünler bir sonraki tur başlarken otomatik tüketilir. Harita veya zorluk değişimi ve sayfa yenileme satın alınmış ürünleri korur. Cüzdan aynı tarayıcı ve adresin yerel kaydında tutulur; farklı cihazlara otomatik taşınmaz.
 
 ## Hemen oyna
 
