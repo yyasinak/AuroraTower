@@ -61,6 +61,7 @@ Hız kazanmak zıplama yüksekliğini artırır. Duvarın yanında yeniden zıpl
 - Ortamlar: Gece Bahçesi → 100 Şafak Zirvesi → 200 Yıldız Denizi → 300 Buzul Fırtınası → 400 Kül Vadisi → 500 Zümrüt Gökler → 600 Kozmik Eşik.
 - Melduk havada bal poleni bırakır. Karakterlerin fiziksel yetenekleri aynıdır.
 - EbuCehil, siyah gömlek ve kabarık koyu saçla seçilebilir; havada çizgi film tarzı kaka parçaları bırakır.
+- ahmat, fotoğraftaki mavi tişörtü, kısa kahverengi saçı, ince bıyığı ve çene sakalıyla karakterleştirilmiştir. Havada dönerek düşen muz kabukları bırakır; dolabında Mavi, Sokak, Gece, Disco 86 ve Palyaço kostümleri bulunur.
 - Aktif 2× veya üzeri komboda duvardan sekmek daha güçlü bir sıçrayış verir. Duvardan sekerken karakter takla atar.
 - Melduk ve white için karakter seçiminde dörder kıyafet bulunur; tercihler kaydedilir.
 - Nadir roketleri toplayarak yaklaşık 10 kat yüksel. Roket sırasında sağa-sola yön verebilirsin; bitince havada atılma yeniden hazır olur.
@@ -105,4 +106,4 @@ Grafikler ve oyun efektleri kodla üretilir. Arka plan müziği depodaki MP3 dos
 
 Kombo 8× ile sınırlı değildir; zincir sürdükçe 9×, 10× ve ötesine çıkar, puan da aynı çarpanı kullanır. Duvar sıçrayışının fiziksel güç artışı denge için sınırlı kalır.
 
-Market: **14 kristale Kombo saati** (ilk 30 saniye yeni kombolar için 5 saniye süre) ve **18 kristale Kristal çantası** (ilk 25 saniye cüzdana çift kristal). EbuCehil dolabında Klasik, Bordo, Altın, Disco ve Buz kostümleri bulunur.
+Market: **35 kristale Kombo saati** (ilk 30 saniye yeni kombolar için 5 saniye süre) ve **45 kristale Kristal çantası** (ilk 25 saniye cüzdana çift kristal). EbuCehil dolabında Klasik, Bordo, Altın, Disco ve Buz kostümleri bulunur.
