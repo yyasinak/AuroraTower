@@ -14,7 +14,11 @@ Enter: baslat / tekrar oyna
 IPUCLARI
 Kosarak hiz kazanmak ziplama yuksekligini artirir.
 Duvarda ziplamaya basarak duvardan sekebilirsin.
+Ayni yone kosmaya devam ettikce hizin artar; tam hizda ziplayis dort kat atlatir.
+Hizliyken duvara carparsan geri sekersin: yonu hemen cevir, hizini koru.
 3,5 saniye icinde daha once inmedigin daha yuksek bir platforma inerek kombo yap.
+Tek sicrayista atladigin her kat komboya eklenir: uc kat atlarsan kombo uc artar.
+Kombo 10x'i gectikten sonra sure kisalir (en az 1,6 saniye); cubuk kalan sureyi gosterir.
 Ayni veya daha alcak platforma inmek komboyu hemen bitirir. Kombo sinirsiz artar.
 Altin kristaller 25 puan verir.
 Sari platformlar yaylidir; mor platformlar hareket eder.
@@ -39,7 +43,7 @@ YUKSEK KATLAR
 400: Kul Vadisi - yukselen kozler ve lav izleri.
 500: Zumrut Gokler - ucan adalar ve ates bocekleri.
 600 ve ustu: Kozmik Esik - halkali gezegen ve meteor yagmurlari.
-Her 100 katta platformlar daralir; hareketli ve kirilgan platformlar siklasir.
+Her 25 katta platformlar biraz daralir; hareketli ve kirilgan platformlar siklasir.
 Platform hareketleri ve firtina hizlanir, kirilma suresi kisalir.
 Her 10 kattaki genis sabit platformlar dinlenme noktalaridir.
 600'den sonra da her 100 katta zorluk artar; artislar giderek kuculur.
@@ -55,3 +59,10 @@ TAKLA, DOLAP VE ROKET
 Duvardan sekerken karakter kendi etrafinda takla atar.
 melduk ve white seciliyken kiyafet dolabindan dort tarzi deneyebilirsin.
 Nadir roketler yaklasik 10 kat yukseltir; A/D ile yon verebilirsin.
+
+BAL AYI SAHNESI
+white ve melduk el ele tirmanir; ikisini tek karakter gibi yonetirsin.
+Havadayken ziplamaya bir kez daha basarak ikinci kez ziplayabilirsin.
+Kalpler 150 puan verir, atilmayi ve cift ziplamayi yeniler.
+Kiyafetler icin karakter sekmesinde white ve melduk'u sirayla secip dolaptan giydir.
+Bu sahnenin rekoru ayri tutulur.

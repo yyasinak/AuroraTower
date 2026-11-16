@@ -14,9 +14,9 @@ Başlangıç marketi daha uzun vadeli kristal ekonomisi için yeniden fiyatland�
 
 Android kaynakları `mobile/` altında; Windows'ta Android SDK 35, build-tools 36 ve JDK 21 ile `mobile/build.ps1` derlenebilir. APK ve yerel imza anahtarı `mobile/build/` içinde oluşur; bu klasör Git'e dahil edilmez. Aynı uygulamayı kayıtları koruyarak güncellemek için imza anahtarını sakla.
 
-Melduk geçici olarak devre dışı. Karakter, kıyafetleri, polen efekti ve kayıtlı kostüm tercihi korunur. Geri açmak için `game.js` içindeki `characters.melduk` tanımında `enabled:false` değerini `enabled:true` yap. Önceden Melduk seçilmişse oyun şimdilik Nova ile açılır; kayıtlı tercih silinmez.
+Melduk yeniden seçilebilir; kıyafetleri, polen efekti ve kayıtlı kostüm tercihi aynen korunur. Bir karakteri geçici olarak gizlemek için `game.js` içindeki tanımına `enabled:false` eklemek yeterlidir.
 
-Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Yedi karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
+Icy Tower'dan esinlenen, kurulum gerektirmeyen bir tırmanış oyunu. Sekiz karakter, yedi ortam, momentumla zıplama, duvardan sekme, havada atılma ve giderek zorlaşan platformlar.
 
 Girişte **Normal** ve **Fırtına** zorlukları seçilebilir. Normal modun takip hızı dengeli ama önceki sürümden biraz daha yüksektir. Fırtına modunda takip %32 hızlanır; platform genişliği, hareket ve kırılganlık bir zorluk kademesi önden başlar. Her harita ve zorluk için rekor ayrı tutulur. Tur sırasında kayıtlı rekor geçildiğinde **Yeni Rekor** duyurusu anında görünür.
 
@@ -55,9 +55,12 @@ Hız kazanmak zıplama yüksekliğini artırır. Duvarın yanında yeniden zıpl
 ## Oyun
 
 - Daha önce inmediğin yüksek platformlara art arda inerek **sınırsız yükselen kombo** yap. Aynı veya daha alt platforma inmek komboyu bitirir.
+- Aynı yöne koşmayı sürdürdükçe hız ikinci kademeye çıkar (430 → 640); tam hızda zıplayış dört kat atlatır. Hızlıyken duvara çarpmak hızın %92'sini koruyarak geri sektirir; yavaş temas eskisi gibi durdurur ve duvardan kaymaya izin verir.
+- Kombo, tek sıçrayışta atlanan kat sayısı kadar artar. 10×'ten sonra kombo süresi her adımda 0,05 sn kısalır (en az 1,6 sn; Kombo saati ile 2,6 sn). Kombo göstergesinin altındaki çubuk kalan süreyi gösterir.
+- **Bal Ayı** sahnesinde white ve melduk el ele, tek karakter gibi oynanır. Çiftin gövdesi daha geniştir (46 birim), havada bir kez daha zıplayabilir ve arkasında bal poleni bırakır. Her 12 katta bir çıkan kalpler +150 puan verir, atılmayı ve çift zıplamayı yeniler. Rekoru diğer sahnelerden ayrı tutulur; ikisinin kıyafetleri kendi dolap seçimlerinden gelir.
 - Sarı platformlar yaylı, mor platformlar hareketli, pembe platformlar kırılgandır.
 - Her 5 kristalde 8 saniyelik mıknatıs ve çift kristal puanı kazanırsın.
-- Her 25 katta bonus; her 100 katta artan zorluk. Her 10 katta geniş, sabit bir platform bulunur.
+- Her 25 katta bonus ve bir zorluk adımı: platformlar biraz daralır, hareketli ve kırılgan platformlar sıklaşır, fırtına hızlanır. İlk 25 kat sabit ve kolaydır; her 100. katta zorluk eski kademe değerine denk gelir. Her 10 katta geniş, sabit bir platform bulunur.
 - Ortamlar: Gece Bahçesi → 100 Şafak Zirvesi → 200 Yıldız Denizi → 300 Buzul Fırtınası → 400 Kül Vadisi → 500 Zümrüt Gökler → 600 Kozmik Eşik.
 - Melduk havada bal poleni bırakır. Karakterlerin fiziksel yetenekleri aynıdır.
 - EbuCehil, siyah gömlek ve kabarık koyu saçla seçilebilir; havada çizgi film tarzı kaka parçaları bırakır.

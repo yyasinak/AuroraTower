@@ -31,7 +31,7 @@
 @media(max-width:900px){#combo{top:108px;left:16px;transform:none;max-width:185px}#notice{top:158px}}
 @media(max-width:500px){.results-mode .panel{padding:25px 20px}.result-stats{gap:5px}.result-stats>div+div{padding-left:6px}.result-stats span{font-size:8px}.result-stats strong{font-size:22px}.result-heading{font-size:8px}.record-line{font-size:9px}.results-mode .character small{display:none}}
 @media(prefers-reduced-motion:reduce){.results-mode .panel{animation:none}}
-.characters{grid-template-columns:repeat(3,1fr)}.character svg{height:48px}.results-mode .character svg{height:36px}.results-mode .characters{gap:6px}.results-mode .character{padding:3px}.results-mode .character small{display:none}@media(min-height:850px){.character svg{height:56px}}
+.characters{grid-template-columns:repeat(4,1fr)}.character svg{height:48px}.results-mode .character svg{height:36px}.results-mode .characters{gap:6px}.results-mode .character{padding:3px}.results-mode .character small{display:none}@media(min-height:850px){.character svg{height:56px}}
 #wardrobe{margin:12px 0;padding:12px;background:#ffffff05;border:1px solid #ffffff18;border-radius:8px}.wardrobe-label{display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;color:#b6c8df}.wardrobe-label span{color:#859ab6;letter-spacing:0}#outfitOptions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}#outfitOptions button{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 3px;background:#ffffff05;border:1px solid #ffffff18;border-radius:5px;color:#aebfd5;font-size:11px}#outfitOptions i{width:13px;height:15px;background:var(--cloth);border:1px solid #ffffff55;border-radius:3px}#outfitOptions button[aria-pressed="true"]{border-color:#b5df93;color:#e4f2df;background:#9cbc7920}.results-mode #wardrobe{border-color:#c4c8bb;background:#dce0d4;padding:8px}.results-mode .wardrobe-label,.results-mode #outfitOptions button{color:#394832}.results-mode #outfitOptions button[aria-pressed="true"]{border-color:#536342}.results-mode #outfitOptions{margin-top:7px}.results-mode .wardrobe-label span{color:#6a7562}
 .map-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}.map-options button{padding:17px 12px;text-align:left;color:#defff6;border:1px solid #4d9d9666;border-radius:7px;background:linear-gradient(140deg,#143848,#153028)}.map-options button[data-map="retro"]{background:repeating-linear-gradient(0deg,transparent 0 13px,#ff74d215 13px 14px),linear-gradient(135deg,#3b1855,#793562);color:#ffe1a1}.map-options b{font-size:18px;font-style:italic;letter-spacing:1px}.map-options small{display:block;font-size:9px;margin-top:5px}.map-options button[aria-pressed="true"]{outline:2px solid #e5df95;outline-offset:1px}#mapDetail{font-size:10px!important;line-height:1.5!important;margin:10px 0 15px!important;color:#9cafc5}.results-mode #mapDetail{color:#646c5e}#outfitOptions{grid-template-columns:repeat(auto-fit,minmax(65px,1fr))}.results-mode .map-options button{padding:10px}.results-mode .map-options b{font-size:14px}
 #shop{margin:16px 0;padding:12px;border:1px solid #f2cf8133;border-radius:8px;background:#d4b36708}.shop-heading{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1px;color:#e0d3b3}#walletBalance{font-size:16px;color:#ffdf8a}#shopItems{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}#shopItems button{padding:10px 7px;text-align:left;border:1px solid #ffffff22;border-radius:5px;color:#e1e9f3;background:#ffffff07}#shopItems strong,#shopItems small,#shopItems b{display:block}#shopItems strong{font-size:11px}#shopItems small{font-size:9px;color:#92a6bf;line-height:1.5;margin:6px 0}#shopItems b{font-size:10px;color:#ffda8c}#shopItems button:disabled{opacity:.5;cursor:default}#shopNote{font-size:9px!important;line-height:1.5!important;color:#91a5bc;margin:9px 0 0!important}.results-mode #shop{background:#e0e1d1;border-color:#c0c6b1}.results-mode .shop-heading,.results-mode #walletBalance,.results-mode #shopItems button,.results-mode #shopItems b{color:#394531}.results-mode #shopItems small,.results-mode #shopNote{color:#66745e}#walletHud{color:#ffdb88}
@@ -61,22 +61,135 @@ canvas{touch-action:none}#calibrate{display:none}@media(pointer:coarse){#calibra
 @media(pointer:coarse){#overlay:not(.results-mode) .panel h1{font-size:31px;letter-spacing:-2px;overflow-wrap:anywhere}.characters .character:last-child:nth-child(3n+1){grid-column:2}#shopItems button:not(:disabled):active{transform:scale(.97)}#musicToggle:active{transform:scale(.96)}}
 @media(prefers-reduced-motion:reduce){#notice.century{animation:none}.primary:after{display:none}}
 
+/* Tabbed menu: fixed header and start button, one section at a time in between. */
+#overlay{overflow:hidden;padding:20px;align-items:center}
+#overlay .panel#menuPanel{display:flex;flex-direction:column;width:600px;max-height:100%;padding:0!important;overflow:hidden}
+#overlay:not(.paused-mode) .panel#menuPanel{height:min(730px,100%)}.key{white-space:nowrap}
+.menu-head{padding:26px 32px 14px;flex-shrink:0}
+#menuPanel .menu-head h1{font-size:38px;line-height:1.02;letter-spacing:-1.5px;margin:10px 0 8px}
+#menuPanel .menu-head p{margin:0;font-size:13px;line-height:1.5}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:0 32px;padding:4px;background:#ffffff08;border:1px solid #ffffff12;border-radius:12px;flex-shrink:0}
+.tabs button{padding:10px 4px;border:0;border-radius:9px;background:transparent;color:#93a8c2;font-size:11px;font-weight:700;letter-spacing:1.5px;transition:background .15s,color .15s}
+.tabs button:hover{color:#dcebff;background:#ffffff08}
+.tabs button[aria-selected="true"]{background:#6ef2d8;color:#092326;box-shadow:0 3px 14px #43eac133}
+.tabs button:focus-visible{outline:2px solid #fff0a5;outline-offset:2px}
+.tabs i{font-style:normal;font-weight:600;letter-spacing:0;color:#ffdf8a;margin-left:3px}.tabs button[aria-selected="true"] i{color:#5a4a12}
+.menu-body{flex:1;min-height:0;overflow-y:auto;padding:16px 32px 6px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#ffffff22 transparent}
+.menu-foot{flex-shrink:0;padding:14px 32px 18px;border-top:1px solid #ffffff10;background:#0000001c}
+#overlay #menuPanel #start{margin-top:0;position:relative}.menu-foot .sub{margin-top:11px}
+#menuPanel.tab-play [data-pane]:not([data-pane="play"]),#menuPanel.tab-character [data-pane]:not([data-pane="character"]),#menuPanel.tab-shop [data-pane]:not([data-pane="shop"]),#menuPanel.tab-settings [data-pane]:not([data-pane="settings"]){display:none}
+.paused-mode .tabs{display:none}.paused-mode #menuPanel [data-pane="settings"]:not(.hidden){display:block}.paused-mode #menuPanel #controls:not(.hidden){display:grid}
+.menu-body>:first-child,.menu-body>.hidden+*{margin-top:0}
+#menuPanel #shop,#menuPanel #musicPanel{margin:0 0 12px}#menuPanel .controls{margin:0 0 10px}
+#menuPanel #mapDetail,#menuPanel #challengeDetail{margin-bottom:14px!important}
+#menuPanel .characters{margin-top:10px}#menuPanel .character svg{height:60px}#menuPanel .selection-note{margin:10px 0 4px}
+#loadout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:2px}
+#loadout>*{display:block;padding:10px 12px;text-align:left;border:1px solid #ffffff16;border-radius:10px;background:#ffffff05;color:#e6effb;min-width:0}
+#loadout button{transition:border-color .15s,background .15s}#loadout button:hover{border-color:#82f5df77;background:#ffffff0b}
+#loadout small{display:block;font-size:9px;letter-spacing:1.5px;color:#8ba0bd}#loadout b{display:block;margin-top:4px;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#loadout b i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+#loadout .ready{grid-column:1/-1;font-size:11px;color:#bfe9c9;border-color:#7fd69a44;background:#7fd69a0d}
+/* Shop cards say what is missing instead of just fading out. */
+#shopItems button:disabled{opacity:1}#shopItems button{display:flex;flex-direction:column;transition:transform .12s,border-color .15s,background .15s}#shopItems button small{flex:1}
+#shopItems button:not(:disabled):hover{transform:translateY(-2px);border-color:#ffda8c88;background:#ffda8c0f}
+#shopItems button.short strong{color:#aab8cb}#shopItems button.short b{color:#a8997a}#shopItems em{display:block;margin-top:3px;font-style:normal;font-size:9px;color:#e2958c}
+#shopItems button.queued{border-color:#7fd69a77;background:#7fd69a12}#shopItems button.queued b{color:#9fe6b4}
+/* Score ticket keeps its paper look inside the same layout. */
+.results-mode .menu-head{padding:30px 34px 6px}.results-mode #menuPanel .menu-head h1{font-size:clamp(38px,6vw,56px);margin:14px 0 6px}.results-mode #menuPanel .menu-head p{margin:0 0 10px}
+.results-mode .tabs{margin:0 34px;background:#dcdccf;border-color:#c3c8bb;border-radius:2px}.results-mode .tabs button{color:#5c6654;border-radius:2px;font-family:Consolas,monospace}.results-mode .tabs button:hover{background:#cfd4c4;color:#252827}.results-mode .tabs button[aria-selected="true"]{background:#252c25;color:#d9f36b;box-shadow:none}.results-mode .tabs i{color:#6d6a3c}.results-mode .tabs button[aria-selected="true"] i{color:#e7f3d7}
+.results-mode .menu-body{padding:14px 34px 4px;scrollbar-color:#0003 transparent}.results-mode .menu-foot{padding:12px 34px 18px;border-top:1px solid #c8cbbf;background:transparent}
+.results-mode #loadout,.results-mode #mapDetail,.results-mode #challengeDetail,.lbl-over,.results-mode .lbl-menu,.results-mode .primary:after{display:none}.results-mode .lbl-over{display:inline}#overlay.results-mode .panel#menuPanel{height:min(660px,100%)}.tabs [data-tab="stage"]{display:none}.results-mode .tabs [data-tab="stage"]{display:block}.results-mode .tabs{grid-template-columns:repeat(5,1fr)}#menuPanel.tab-stage [data-pane],.results-mode #menuPanel.tab-play #mapSelect,.results-mode #menuPanel.tab-play #challengeSelect,.paused-mode #loadout{display:none}.results-mode #menuPanel.tab-stage #mapSelect:not(.hidden),.results-mode #menuPanel.tab-stage #challengeSelect:not(.hidden){display:block}.results-mode #mapSelect{margin-bottom:14px}.results-mode .map-options button{padding:16px 12px}.results-mode .record-track{margin-bottom:16px}
+.results-mode #shopItems button.short strong{color:#6b7563}.results-mode #shopItems button.short b{color:#7c8473}.results-mode #shopItems em{color:#a24b3f}.results-mode #shopItems button.queued{border-color:#536342;background:#cfdcc3}.results-mode #shopItems button.queued b{color:#33492a}
+@media(max-height:700px){.menu-head{padding-top:18px}#menuPanel .menu-head h1{font-size:30px}}
+@media(pointer:coarse){#overlay{align-items:stretch;padding:max(8px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom))}#overlay:not(.paused-mode) .panel#menuPanel{height:100%}.paused-mode .panel#menuPanel{margin:auto!important}.menu-head{padding:18px 16px 10px}#overlay #menuPanel .menu-head h1{font-size:28px;letter-spacing:-1px}.tabs{margin:0 12px}.tabs button{padding:12px 2px;font-size:10px;letter-spacing:.8px}.menu-body{padding:12px 16px 4px}.menu-foot{padding:10px 16px 14px}#menuPanel .character svg{height:46px}#loadout{gap:6px}#loadout>*{padding:8px 9px}#loadout b{font-size:13px}.results-mode .menu-head{padding:22px 16px 4px}.results-mode .tabs{margin:0 16px}.results-mode .tabs i{display:none}.results-mode .tabs button{letter-spacing:0}.results-mode .menu-body{padding:12px 16px 4px}.results-mode .menu-foot{padding:10px 16px 14px}}
+@media(prefers-reduced-motion:reduce){.tabs button,#shopItems button{transition:none}}
+.hints{transition:opacity .8s}#bottom.hints-off .hints{opacity:0}#comboBar{position:absolute;left:0;bottom:0;height:2px;width:0;background:#63ffda;box-shadow:0 0 8px #63ffda}.map-options{grid-template-columns:repeat(3,1fr)}.map-options b{font-size:16px}.map-options button[data-map="duo"]{background:radial-gradient(circle at 82% 18%,#ffe2a055,transparent 42%),linear-gradient(135deg,#4b2244,#b3663f);color:#fff0c9;border-color:#ffcf7a66}
+.duo-note{display:none;margin-bottom:12px;padding:10px 12px;border:1px solid #ffcf7a55;border-radius:9px;background:#ffcf7a12;color:#ffe6b8;font-size:11px;line-height:1.5}.map-duo .duo-note{display:block}.results-mode .duo-note{background:#e6dcc0;border-color:#b9a56a;color:#5a4a1e}
+@media(pointer:coarse){.map-options b{font-size:13px;letter-spacing:.5px}.map-options small{font-size:8px}.map-options button{padding:11px 7px}}
+/* In-game manual tab. */
+.tabs{grid-template-columns:repeat(5,1fr)}.tabs button{letter-spacing:1px;font-size:10.5px}.results-mode .tabs [data-tab="guide"]{display:none}@media(max-width:640px){.tabs i{display:none}}
+#menuPanel.tab-guide [data-pane]:not([data-pane="guide"]){display:none}
+.guide-card{padding:12px 14px;margin-bottom:10px;border:1px solid #ffffff14;border-radius:10px;background:#ffffff05}
+.guide-card h3{margin:0 0 7px;font-size:11px;letter-spacing:2px;color:#77f2de;text-transform:uppercase}
+#guide p,#guide li{font-size:12px;line-height:1.55;color:#b9c9de;margin:0}#guide ul{margin:0;padding:0;list-style:none}#guide li+li{margin-top:6px}#guide li b{color:#eef5ff}
+#guide ul:not(.guide-keys):not(.guide-legend) li{padding-left:13px;position:relative}#guide ul:not(.guide-keys):not(.guide-legend) li:before{content:'';position:absolute;left:1px;top:.62em;width:5px;height:5px;border-radius:50%;background:#6ef2d877}
+.guide-keys li{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline}.guide-keys b{font-size:11px;padding:3px 7px;border:1px solid #ffffff2c;border-radius:6px;background:#ffffff0a;text-align:center;white-space:nowrap}
+.guide-legend li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center}.guide-legend i{height:7px;border-radius:4px;box-shadow:0 0 10px #ffffff22}
+@media(pointer:coarse){.tabs button{font-size:9px;letter-spacing:.3px;padding:12px 1px}.tabs i{display:none}.guide-keys li{grid-template-columns:96px 1fr}#guide p,#guide li{font-size:11.5px}}
 </style>
 </head>
 <body>
 <canvas id="game" aria-label="Aurora Tower platform oyunu"></canvas>
 <div id="hud"><div><div class="brand">AURORA <b>TOWER</b></div><div class="stats"><div class="stat"><small>KAT</small><strong id="floor">0</strong></div><div class="stat"><small>PUAN</small><strong id="score">0</strong></div><div class="stat"><small>REKOR</small><strong id="best">0</strong></div></div></div><div class="right"><div class="brand" id="zone">01 / GECE BAHÇESİ</div><div class="hud-actions" style="margin-top:10px"><button class="iconbtn" id="sound" aria-label="Sesi aç veya kapat">SES AÇIK</button><button class="iconbtn" id="tiltMode">EĞME</button><button class="iconbtn" id="calibrate">AYARLA</button><button class="iconbtn" id="pause" aria-label="Duraklat"></button></div></div></div>
 <div id="notice" role="status" aria-live="polite"><strong id="noticeTitle"></strong><small id="noticeDetail"></small></div>
-<div id="combo" style="opacity:0"><b id="comboN">2×</b><span id="comboLabel">KESİNTİSİZ YÜKSELİŞ</span></div>
-<div id="bottom"><div><span class="key">A</span> <span class="key">D</span> hareket &nbsp; <span class="key">SPACE</span> zıpla &nbsp; <span class="key">SHIFT</span> atıl<div style="margin-top:9px">Space basılı: kesintisiz zıpla.</div><div class="objectives"><div id="walletHud">CÜZDAN 0 ◆</div><div id="goal">SONRAKİ HEDEF: 25. KAT</div><div id="crystalStatus">KRİSTAL 0/5 · ŞÖLENE DOĞRU</div></div></div><div class="right"><span id="dashLabel">ATILMA HAZIR</span><div class="meter"><i id="dashMeter"></i></div></div></div>
+<div id="combo" style="opacity:0"><b id="comboN">2×</b><span id="comboLabel">KESİNTİSİZ YÜKSELİŞ</span><i id="comboBar"></i></div>
+<div id="bottom"><div><div class="hints"><span class="key">A</span> <span class="key">D</span> hareket &nbsp; <span class="key">SPACE</span> zıpla &nbsp; <span class="key">SHIFT</span> atıl<div style="margin-top:9px">Space basılı: kesintisiz zıpla.</div></div><div class="objectives"><div id="walletHud">CÜZDAN 0 ◆</div><div id="goal">SONRAKİ HEDEF: 25. KAT</div><div id="crystalStatus">KRİSTAL 0/5 · ŞÖLENE DOĞRU</div></div></div><div class="right"><span id="dashLabel">ATILMA HAZIR</span><div class="meter"><i id="dashMeter"></i></div></div></div>
 <div id="touch" aria-label="Mobil kontroller"><div class="move-pad"><button data-key="ArrowLeft" aria-label="Sola git"><b>‹</b><small>SOL</small></button><button data-key="ArrowRight" aria-label="Sağa git"><b>›</b><small>SAĞ</small></button></div><div class="action-pad"><button class="dash-touch" data-key="ShiftLeft" aria-label="Havada atıl"><b>↗</b><small>ATIL</small></button><button class="jump-touch" data-key="Space" aria-label="Zıpla"><b>↑</b><small>ZIPLA</small></button></div></div>
 <div id="bootSplash" aria-hidden="true"><img src="assets/images/aurora-tower-icon.png" alt=""><div><b>AURORA</b><span>TOWER</span></div><i></i></div>
-<div id="overlay"><section class="panel"><div class="eyebrow" id="eyebrow">BİR SIÇRAYIŞ DAHA.</div><h1 id="title">Gökyüzü<br>senin <em>oyun alanın.</em></h1><p id="description">Icy Tower ruhunda yeni bir tırmanış. Momentumunu koru, katları bir hamlede geç ve peşinden gelen fırtınadan kaç.</p><div id="results" class="hidden">
+<div id="overlay"><section class="panel tab-play" id="menuPanel">
+<header class="menu-head"><div class="eyebrow" id="eyebrow">BİR SIÇRAYIŞ DAHA.</div><h1 id="title">Gökyüzü senin <em>oyun alanın.</em></h1><p id="description">Momentumunu koru, katları bir hamlede geç ve peşinden gelen fırtınadan kaç.</p></header>
+<nav class="tabs" role="tablist" aria-label="Menü bölümleri"><button type="button" role="tab" data-tab="play" aria-selected="true"><span class="lbl-menu">OYNA</span><span class="lbl-over">SONUÇ</span></button><button type="button" role="tab" data-tab="stage" aria-selected="false">SAHNE</button><button type="button" role="tab" data-tab="character" aria-selected="false">KARAKTER</button><button type="button" role="tab" data-tab="shop" aria-selected="false">MARKET <i id="tabWallet"></i></button><button type="button" role="tab" data-tab="settings" aria-selected="false">AYARLAR</button><button type="button" role="tab" data-tab="guide" aria-selected="false">KILAVUZ</button></nav>
+<div class="menu-body" id="menuBody">
+<div data-pane="play" id="results" class="hidden">
  <div class="result-heading"><span id="resultPilot"></span><span id="resultStamp">TUR KAYDI</span></div>
  <div class="score-block"><span class="score-caption">TOPLAM PUAN</span><strong id="resultScore">0</strong><span class="score-mark" aria-hidden="true">↗</span></div>
  <div class="result-stats"><div><span>ULAŞILAN KAT</span><strong id="resultFloor">0</strong></div><div><span>EN İYİ KOMBO</span><strong id="resultCombo">—</strong></div><div><span>SÜRE</span><strong id="resultTime">0:00</strong></div><div><span>KRİSTAL</span><strong id="resultCrystals">0</strong></div></div>
  <div class="record-line"><span>KİŞİSEL REKOR <b id="resultBest">0</b></span><span id="resultDelta"></span></div><div class="record-track"><i id="resultProgress"></i></div>
-</div><div id="mapSelect"><div class="select-label">SAHNEYİ SEÇ</div><div class="map-options"><button type="button" data-map="aurora" aria-pressed="true"><b>AURORA</b><small>Kutup ışıklarından yıldızlara</small></button><button type="button" data-map="retro" aria-pressed="false"><b>NEON 1986</b><small>Kaseti tak. Şehri yukarıdan gör.</small></button></div><p id="mapDetail"></p></div><div id="challengeSelect"><div class="select-label">ZORLUK</div><div class="challenge-options" role="group" aria-label="Zorluk seçimi"><button type="button" data-challenge="normal" aria-pressed="true"><span class="mode-icon">◇</span><b>NORMAL</b><small>Dengeli ve akıcı tırmanış</small></button><button type="button" data-challenge="storm" aria-pressed="false"><span class="mode-icon">⚡</span><b>FIRTINA</b><small>Daha hızlı takip, dar platformlar</small></button></div><p id="challengeDetail"></p></div><section id="musicPanel"><div class="music-heading"><b>♪ KASETÇALAR</b><button type="button" id="musicToggle">MÜZİK AÇIK</button></div><div id="musicStatus">Stayin’ Alive · Neon 1986 turunda otomatik çalar</div><label class="music-volume">Arka plan sesi <input id="musicVolume" type="range" min="0" max="50" value="18"><output id="musicPercent">18%</output></label></section><div id="characterSelect"><div class="select-label">TIRMANIŞ ARKADAŞINI SEÇ</div><div id="characters" class="characters" role="group" aria-label="Karakter seçimi"></div><div id="wardrobe" class="hidden"><div class="wardrobe-label">KIYAFET DOLABI <span>Görünümünü seç</span></div><div id="outfitOptions"></div></div><div class="selection-note">Yedi karakter, aynı yetenekler. Tarzını seç.</div></div><section id="shop"><div class="shop-heading"><span>BAŞLANGIÇ MARKETİ</span><b id="walletBalance">0 ◆</b></div><div id="shopItems"></div><p id="shopNote"></p></section><div class="controls" id="controls"><div class="desktop-guide"><div><span class="key">← →</span> / <span class="key">A D</span> Koş</div><div><span class="key">SPACE</span> Basılı tut: sürekli zıpla</div><div><span class="key">SHIFT</span> Havada atıl</div><div><span class="key">P</span> / <span class="key">ESC</span> Duraklat</div></div><div class="mobile-guide"><div><b>◀ ▶</b><span>Yön tuşları veya telefonu eğ</span></div><div><b>↑</b><span>Dokun: zıpla<br>Basılı tut: sürekli</span></div><div><b>↗</b><span>Havada bir kez atıl</span></div><div><b>Ⅱ</b><span>Oyunu duraklat</span></div></div></div><button class="primary" id="start">TIRMANIŞA BAŞLA &nbsp; ↗</button><div class="sub"><span id="hint">Kombo + duvar = takla! Roketleri yakala: +10 kat.</span><span>OFFLINE • SOLO</span></div></section></div>
+</div>
+<div data-pane="play" id="mapSelect"><div class="select-label">SAHNEYİ SEÇ</div><div class="map-options"><button type="button" data-map="aurora" aria-pressed="true"><b>AURORA</b><small>Kutup ışıklarından yıldızlara</small></button><button type="button" data-map="retro" aria-pressed="false"><b>NEON 1986</b><small>Kaseti tak. Şehri yukarıdan gör.</small></button><button type="button" data-map="duo" aria-pressed="false"><b>BAL AYI</b><small>White ve melduk el ele.</small></button></div><p id="mapDetail"></p></div>
+<div data-pane="play" id="challengeSelect"><div class="select-label">ZORLUK</div><div class="challenge-options" role="group" aria-label="Zorluk seçimi"><button type="button" data-challenge="normal" aria-pressed="true"><span class="mode-icon">◇</span><b>NORMAL</b><small>Dengeli ve akıcı tırmanış</small></button><button type="button" data-challenge="storm" aria-pressed="false"><span class="mode-icon">⚡</span><b>FIRTINA</b><small>Daha hızlı takip, dar platformlar</small></button></div><p id="challengeDetail"></p></div>
+<div id="loadout" data-pane="play"></div>
+<div data-pane="character" id="characterSelect"><div class="duo-note">Bal Ayı sahnesinde white ve melduk el ele oynar. Kıyafetlerini değiştirmek için ikisini sırayla seçip dolaptan giydir.</div><div class="select-label">TIRMANIŞ ARKADAŞINI SEÇ</div><div id="characters" class="characters" role="group" aria-label="Karakter seçimi"></div><div id="wardrobe" class="hidden"><div class="wardrobe-label">KIYAFET DOLABI <span>Görünümünü seç</span></div><div id="outfitOptions"></div></div><div class="selection-note">Sekiz karakter, aynı yetenekler. Tarzını seç.</div></div>
+<section data-pane="shop" id="shop"><div class="shop-heading"><span>BAŞLANGIÇ MARKETİ</span><b id="walletBalance">0 ◆</b></div><div id="shopItems"></div><p id="shopNote"></p></section>
+<section data-pane="settings" id="musicPanel"><div class="music-heading"><b>♪ KASETÇALAR</b><button type="button" id="musicToggle">MÜZİK AÇIK</button></div><div id="musicStatus">Stayin’ Alive · Neon 1986 turunda otomatik çalar</div><label class="music-volume">Arka plan sesi <input id="musicVolume" type="range" min="0" max="50" value="18"><output id="musicPercent">18%</output></label></section>
+<div data-pane="settings" class="controls" id="controls"><div class="desktop-guide"><div><span class="key">← →</span> / <span class="key">A D</span> Koş</div><div><span class="key">SPACE</span> Basılı tut: sürekli zıpla</div><div><span class="key">SHIFT</span> Havada atıl</div><div><span class="key">P</span> / <span class="key">ESC</span> Duraklat</div></div><div class="mobile-guide"><div><b>◀ ▶</b><span>Yön tuşları veya telefonu eğ</span></div><div><b>↑</b><span>Dokun: zıpla<br>Basılı tut: sürekli</span></div><div><b>↗</b><span>Havada bir kez atıl</span></div><div><b>Ⅱ</b><span>Oyunu duraklat</span></div></div></div>
+<section id="guide" data-pane="guide" aria-label="Kullanım kılavuzu">
+<div class="guide-card"><h3>Amaç</h3><p>Platformdan platforma zıplayarak olabildiğince yükseğe çık. Alttan yükselen pembe fırtına sana değerse ya da ekranın altına düşersen tur biter.</p></div>
+<div class="guide-card"><h3>Kontroller</h3><ul class="guide-keys">
+<li><b>← → / A D</b><span>Koş. Telefonda yön düğmeleri ya da cihazı eğmek.</span></li>
+<li><b>Space / W / ↑</b><span>Zıpla. Basılı tutarsan her inişte yeniden zıplar; erken bırakırsan alçak zıplar.</span></li>
+<li><b>Shift</b><span>Havada bir kez ileri atıl. Yere inince yenilenir.</span></li>
+<li><b>P / Esc</b><span>Duraklat ve devam et.</span></li>
+<li><b>Enter</b><span>Turu başlat ya da yeniden oyna.</span></li></ul></div>
+<div class="guide-card"><h3>Hız ve duvarlar</h3><ul>
+<li>Koşarken zıplarsan daha yükseğe çıkarsın.</li>
+<li>Aynı yöne koşmayı sürdürdükçe hızın artmaya devam eder; iz altın rengine dönünce ikinci kademedesin. Tam hızda tek zıplayış dört kat atlatır.</li>
+<li>Hızlıyken duvara çarparsan geri sekersin. Yönü hemen çevirirsen hızını korursun; duvara doğru basmaya devam edersen hız sıfırlanır.</li>
+<li>Duvara yaslanıp zıplamaya basarak duvardan sıçrayabilirsin. Aktif komboda bu sıçrayış daha güçlüdür ve karakter takla atar.</li></ul></div>
+<div class="guide-card"><h3>Kombo ve puan</h3><ul>
+<li>Daha önce inmediğin, daha yüksek bir platforma süre dolmadan inersen kombo büyür. Tek sıçrayışta atladığın her kat komboya eklenir.</li>
+<li>Her iniş, atlanan kat × 10 × kombo puan verir.</li>
+<li>Süre 3,5 saniyedir; 10× sonrası kısalır (en az 1,6 sn). Kombo göstergesinin altındaki çubuk kalan süreyi gösterir.</li>
+<li>Aynı ya da daha alçak bir platforma inersen kombo sıfırlanır.</li>
+<li>Her 25 katta +250, her 100 katta +1000 bonus puan.</li></ul></div>
+<div class="guide-card"><h3>Platformlar</h3><ul class="guide-legend">
+<li><i style="background:#6bdccb"></i><span><b>Turkuaz</b> · Sabit, güvenli.</span></li>
+<li><i style="background:#f8cb7b"></i><span><b>Sarı</b> · Yaylı; çok daha yükseğe fırlatır.</span></li>
+<li><i style="background:#a19cfa"></i><span><b>Mor</b> · Sağa sola hareket eder.</span></li>
+<li><i style="background:#ed98b2"></i><span><b>Pembe</b> · Kırılgan; bastıktan kısa süre sonra kırılır.</span></li>
+<li><i style="background:#ff75d4"></i><span><b>Neon ped</b> · Yalnızca Neon 1986'da; güçlü sıçratır.</span></li>
+<li><i style="background:#ffd66f"></i><span><b>Altın uçlu</b> · Her 10 katta bir geniş dinlenme platformu.</span></li></ul></div>
+<div class="guide-card"><h3>Toplanabilirler</h3><ul>
+<li><b>Kristal ◆</b> · 25 puan ve cüzdana 1 kristal. Her 5 kristalde 8 saniyelik şölen başlar: mıknatıs ve kristallerden çift puan.</li>
+<li><b>Roket</b> · Nadir çıkar, yaklaşık 10 kat yükseltir. Uçarken yön verebilirsin.</li>
+<li><b>Kaset</b> · Neon 1986'da; +150 puan ve atılmayı yeniler.</li>
+<li><b>Kalp</b> · Bal Ayı'nda; +150 puan, atılmayı ve çift zıplamayı yeniler.</li></ul></div>
+<div class="guide-card"><h3>Sahneler</h3><ul>
+<li><b>Aurora</b> · Her 100 katta değişen yedi ortam.</li>
+<li><b>Neon 1986</b> · Neon pedler, kasetler ve müzik. Dururken karakter dans eder.</li>
+<li><b>Bal Ayı</b> · White ve melduk el ele oynar. Gövdeleri daha geniştir ve havada bir kez daha zıplayabilirler.</li>
+<li>Her sahne ve zorluk için rekor ayrı tutulur.</li></ul></div>
+<div class="guide-card"><h3>Zorluk ve fırtına</h3><ul>
+<li>İlk 25 kat sabit ve kolaydır. Sonra her 25 katta platformlar daralır, hareketli ve kırılgan olanlar sıklaşır, fırtına hızlanır.</li>
+<li><b>Fırtına</b> zorluğunda takip daha hızlıdır ve zorluk bir kademe önden başlar.</li>
+<li>Fırtına yaklaşınca ekranın altı pembe titreşir.</li></ul></div>
+<div class="guide-card"><h3>Market ve karakterler</h3><ul>
+<li>Topladığın kristaller cüzdanda birikir. Marketten aldığın güçlendirici yalnızca bir sonraki turda, bir kez kullanılır.</li>
+<li>Karakterlerin yetenekleri aynıdır; yalnızca görünüşleri ve arkalarında bıraktıkları iz farklıdır. Bazılarının kıyafet dolabı vardır.</li>
+<li>Rekorlar, cüzdan ve seçimler bu cihazda saklanır.</li></ul></div>
+</section>
+</div>
+<footer class="menu-foot"><button class="primary" id="start">TIRMANIŞA BAŞLA &nbsp; ↗</button><div class="sub"><span id="hint">Hızlan, duvardan sek, dört kat birden atla. Kombo + duvar = takla!</span><span>OFFLINE • SOLO</span></div></footer>
+</section></div>
 <script src="music.js"></script>
 <script src="mobile-input.js"></script>
 <script src="game.js"></script>
