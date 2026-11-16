@@ -6,8 +6,8 @@ const sandbox={console,innerWidth:1280,innerHeight:800,devicePixelRatio:1,docume
 sandbox.window=sandbox;vm.createContext(sandbox);
 const source=fs.readFileSync('game.js','utf8').replace('reset();function advanceFrame(dt)', 'globalThis.test={enableMeldukForTest:()=>{characters.melduk.enabled=true;renderCharacters();},start,update,advanceFrame,draw,press,pause,reset,dash,buyBooster,earnCrystal,dancing,selectMap,selectChallenge,bestKey,selectCharacter,chooseOutfit,currentSkin,activateRocket,theme,difficulty,registerLanding,die,release:code=>keys.delete(code),setBestForTest:value=>{best=value;setText("best",best);},state:()=>({p,wallet,comboBoost,walletBoost,jumpBoost,stormBrake,steelBoots,map,challenge,recordAnnounced,noticeQueue,tapes,crumbs,rocketTarget,spinTime,wardrobe,time,mode,platforms,highest,score,pollen,bananas,combo,comboTimer,bestCombo,lastFloor,meteors,skyTime,best,newRecord,hazard,selected,milestone,crystals,rush,orbs})};reset();function advanceFrame(dt)');
 vm.runInContext(source,sandbox);const t=sandbox.test;
-assert(!els.characters.innerHTML.includes('data-character="melduk"'));t.selectCharacter('melduk');assert.equal(t.state().selected,'nova');
-storage.set('auroraTowerCharacter','melduk');storage.set('auroraTowerOutfits',JSON.stringify({melduk:4}));const disabledReload={...sandbox};vm.createContext(disabledReload);vm.runInContext(source,disabledReload);assert.equal(disabledReload.test.state().selected,'nova');assert.equal(disabledReload.test.state().wardrobe.melduk,4);assert.equal(storage.get('auroraTowerCharacter'),'melduk');storage.delete('auroraTowerCharacter');storage.delete('auroraTowerOutfits');
+assert(els.characters.innerHTML.includes('data-character="melduk"'));t.selectCharacter('melduk');assert.equal(t.state().selected,'melduk');t.selectCharacter('nova');assert.equal(t.state().selected,'nova');
+storage.set('auroraTowerCharacter','melduk');storage.set('auroraTowerOutfits',JSON.stringify({melduk:4}));const disabledReload={...sandbox};vm.createContext(disabledReload);vm.runInContext(source,disabledReload);assert.equal(disabledReload.test.state().selected,'melduk');assert.equal(disabledReload.test.state().wardrobe.melduk,4);assert.equal(storage.get('auroraTowerCharacter'),'melduk');storage.delete('auroraTowerCharacter');storage.delete('auroraTowerOutfits');
 // Temporarily enable only in this test context to keep testing the preserved feature.
 t.enableMeldukForTest();
 console.log('PASS: hidden character cannot be selected, saved selection falls back, costume data retained.');
@@ -114,3 +114,33 @@ const mobileGameSandbox={console,innerWidth:420,innerHeight:900,devicePixelRatio
 const mobileSource=fs.readFileSync('game.js','utf8').replace('reset();function advanceFrame(dt)',"globalThis.mobileTest={start,update,drop:key=>keys.delete(key),state:()=>({keys:[...keys],vx:p.vx,vy:p.vy})};reset();function advanceFrame(dt)");vm.runInContext(mobileSource,mobileGameSandbox);const mt=mobileGameSandbox.mobileTest;mt.start();
 leftControl.fire('touchstart',1);jumpControl.fire('touchstart',2);assert(mt.state().keys.includes('ArrowLeft')&&mt.state().keys.includes('Space'),'Direction and jump must remain active under two fingers');mt.drop('ArrowLeft');mt.update(1/90);assert(mt.state().keys.includes('ArrowLeft'),'Held controls are restored every physics step');jumpControl.fire('touchend',2);assert(mt.state().keys.includes('ArrowLeft')&&!mt.state().keys.includes('Space'),'Releasing jump must preserve held direction');leftControl.fire('touchend',1);assert(!mt.state().keys.includes('ArrowLeft'));
 console.log('PASS: Android multi-touch keeps direction and jump independent through long holds.');
+
+// Momentum tier: speed builds past the base cap, survives wall bounces and lifts the jump.
+t.start();{const mp=t.state().p;let key='ArrowRight',peak=0,bounces=0,last=1;t.press(key);for(let i=0;i<40;i++)t.update(1/120);assert(mp.vx>=430&&mp.vx<480,'Base speed is reached quickly, the second tier slowly');
+for(let i=0;i<600;i++){t.update(1/120);const s=Math.sign(mp.vx);if(s&&s!==last){bounces++;last=s;assert(Math.abs(mp.vx)>430,'A fast wall hit keeps momentum');t.release(key);key=s>0?'ArrowRight':'ArrowLeft';t.press(key);}peak=Math.max(peak,Math.abs(mp.vx));assert(Math.abs(mp.vx)<=640.001);}
+assert(bounces>=3,'Player bounces between the walls');assert(peak>600,'Momentum builds across bounces, peak '+peak);assert(mp.ground);
+mp.x=270;mp.vx=640;mp.run=640;t.press('Space');t.update(1/120);assert(mp.vy>1000,'Full momentum gives a much higher jump');const apex=mp.vy*mp.vy/3100;assert(apex>4*86&&apex<5*86,'Top-speed jump clears four floors');t.release('Space');t.release(key);
+t.start();const sp=t.state().p;sp.x=14;sp.vx=-300;t.update(1/120);assert.equal(sp.vx,0,'A slow wall touch still stops for wall slides');}
+console.log('PASS: momentum tier, speed cap, wall bounce, four-floor jump and slow wall stop.');
+
+// Combo: skipped floors add to the chain and the window tightens as the chain grows.
+t.start();t.registerLanding(1);assert.equal(t.state().combo,1);assert.equal(t.state().comboTimer,3.5);t.registerLanding(4);assert.equal(t.state().combo,4,'A three-floor jump adds three');assert.equal(t.state().score,10+3*10*4);
+t.registerLanding(5);assert.equal(t.state().combo,5);assert.equal(t.state().comboTimer,3.5,'Window is unchanged up to 10x');for(let f=6;f<=20;f++)t.registerLanding(f);assert.equal(t.state().combo,20);assert(Math.abs(t.state().comboTimer-3)<1e-9,'Window shrinks past 10x');
+for(let f=22;f<=120;f+=2)t.registerLanding(f);assert.equal(t.state().combo,120);assert.equal(t.state().comboTimer,1.6,'Window never drops below 1.6 s');t.registerLanding(120);assert.equal(t.state().combo,0,'Same floor still ends the chain');
+console.log('PASS: multi-floor combo gain, shrinking combo window with floor, chain reset.');
+
+// Difficulty ramps every 25 floors and still matches the old values at each 100th floor.
+t.die();t.selectChallenge('normal');assert.equal(t.difficulty(0).pressure,0);assert.equal(t.difficulty(24).pressure,0);assert(t.difficulty(25).pressure>0,'First step arrives at floor 25');assert(Math.abs(t.difficulty(100).pressure-(1-Math.exp(-1/5)))<1e-12);assert.equal(t.difficulty(199).tier,1);
+for(let f=25;f<=800;f+=25){const a=t.difficulty(f-25),b=t.difficulty(f);assert(b.pressure>a.pressure&&b.minWidth<a.minWidth&&b.stormBoost>a.stormBoost&&b.breakDelay<a.breakDelay,'Each 25-floor step is harder at '+f);}
+t.selectChallenge('storm');assert(Math.abs(t.difficulty(0).pressure-(1-Math.exp(-1/5)))<1e-12,'Storm mode still starts one full tier ahead');t.selectChallenge('normal');
+console.log('PASS: 25-floor difficulty steps, century parity, monotonic ramp and storm head start.');
+
+// Bal Ayi: the hand-in-hand pair is wider, gets one air jump, leaves pollen and has its own record.
+t.die();t.selectCharacter('nova');t.selectMap('duo');assert.equal(t.state().map,'duo');assert.equal(t.bestKey(),'auroraTowerBestDuo');assert.equal(t.theme().name,'BAL AYI / GÜN BATIMI');assert.equal(storage.get('auroraTowerMap'),'duo');
+t.start();{const dp=t.state().p;assert.equal(dp.w,46,'Pair has a wider body');assert(t.state().tapes.length>0,'Hearts are placed on the duo map');t.draw();
+t.press('Space');t.update(1/120);t.release('Space');assert(!dp.ground);for(let i=0;i<30;i++)t.update(1/120);const before=dp.vy;t.press('Space');t.update(1/120);assert(dp.vy>before+200&&dp.vy>550,'Second press in the air jumps again');assert.equal(dp.airJump,false);
+t.release('Space');for(let i=0;i<10;i++)t.update(1/120);const again=dp.vy;t.press('Space');t.update(1/120);assert(dp.vy<again,'Only one air jump per flight');t.release('Space');assert(t.state().pollen.length>0,'Pair leaves a pollen trail with any selected character');t.draw();
+for(let i=0;i<600&&!dp.ground;i++)t.update(1/120);assert(dp.ground&&dp.airJump,'Landing restores the air jump');
+const heart=t.state().tapes[0];heart.anchor=null;heart.x=dp.x;heart.y=dp.y+18;dp.airJump=false;dp.dash=false;const sc=t.state().score;t.update(1/120);assert(heart.taken&&t.state().score>=sc+150&&dp.dash,'Heart gives points and refills dash');}
+t.die();t.selectMap('aurora');t.start();assert.equal(t.state().p.w,24,'Other maps keep the single-character body');const ap=t.state().p;t.press('Space');t.update(1/120);t.release('Space');for(let i=0;i<30;i++)t.update(1/120);const av=ap.vy;t.press('Space');t.update(1/120);assert(ap.vy<av,'No air jump outside the duo map');t.release('Space');t.die();t.selectMap('nope');assert.equal(t.state().map,'aurora');
+console.log('PASS: duo map selection, record key, pair body, single air jump, pollen, hearts and isolation from other maps.');
