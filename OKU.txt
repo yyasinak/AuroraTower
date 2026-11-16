@@ -65,4 +65,7 @@ white ve melduk el ele tirmanir; ikisini tek karakter gibi yonetirsin.
 Havadayken ziplamaya bir kez daha basarak ikinci kez ziplayabilirsin.
 Kalpler 150 puan verir, atilmayi ve cift ziplamayi yeniler.
 Kiyafetler icin karakter sekmesinde white ve melduk'u sirayla secip dolaptan giydir.
+Tur kisa bir opucuk sahnesiyle baslar; hareket edince ya da ziplayinca hemen oyuna gecersin.
+Her 3 kalpte 6 saniye Bal Kanatlari: havada istedigin kadar ziplayabilirsin.
+Bir sure durursan white ve melduk birbirine sokulur.
 Bu sahnenin rekoru ayri tutulur.
